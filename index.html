@@ -18,6 +18,7 @@
 
         /* --- MOCKUP PRESENTATION BACKGROUND --- */
         html, body {
+            /* Premium white marble background */
             background-image: url('https://plus.unsplash.com/premium_photo-1671410372744-989627ea0033?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG1hcmJsZSUyMHdhbGxwYXBlcnxlbnwwfHwwfHx8MA%3D%3D');
             background-size: cover;
             background-position: center;
@@ -29,6 +30,7 @@
             width: 100%;
             min-height: 100vh;
             
+            /* Center the website rectangle */
             display: flex;
             justify-content: center;
             padding: 3rem 2rem; 
@@ -54,80 +56,14 @@
             padding: 3rem 2rem 0 2rem; 
             margin: 0 auto;
             position: relative;
-            z-index: 20; 
+            z-index: 10; 
         }
 
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 5rem;
-        }
-
-        /* Header Left area (Lang + Logo) */
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        /* Language Switcher Styles */
-        .lang-switcher {
-            position: relative;
-            display: inline-block;
-        }
-
-        .lang-btn {
-            background: #fff;
-            border: 1px solid #d1d1d1;
-            border-radius: 50px;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #1a1a1a;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: all 0.2s;
-        }
-
-        .lang-btn:hover {
-            background: #f0f0f0;
-        }
-
-        .lang-dropdown {
-            display: none; /* Hidden by default */
-            position: absolute;
-            top: 110%;
-            left: 0;
-            background: #fff;
-            border: 1px solid #d1d1d1;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            min-width: 140px;
-            z-index: 100;
-            overflow: hidden;
-        }
-
-        .lang-switcher:hover .lang-dropdown {
-            display: block; /* Show on hover */
-        }
-
-        .lang-dropdown a {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.2rem;
-            text-decoration: none;
-            color: #1a1a1a;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: background 0.2s;
-        }
-
-        .lang-dropdown a:hover {
-            background: #f5f5f5;
+            margin-bottom: 4rem;
         }
 
         .logo {
@@ -175,25 +111,17 @@
         }
 
         .hero h1 {
-            font-size: 5.5rem;
-            line-height: 0.85; /* <--- Toto dělá tu malou mezeru mezi Plynth a Studio */
+            font-size: 4.5rem;
+            line-height: 1.05;
             font-weight: 800;
             letter-spacing: -2px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
-        .hero p.subtitle-main {
-            font-size: 1.3rem;
+        .hero p {
+            font-size: 1.1rem;
             color: #444;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero p.subtitle-desc {
-            font-size: 1.05rem;
-            color: #666;
             line-height: 1.5;
-            max-width: 700px;
-            margin: 0 auto;
         }
 
         /* Hero Buttons */
@@ -213,7 +141,6 @@
             font-size: 1rem;
             font-weight: 500;
             text-align: center;
-            cursor: pointer;
         }
 
         .btn-dark {
@@ -388,19 +315,32 @@
 
         /* --- Mobile Responsive Fixes --- */
         @media (max-width: 768px) {
-            html, body { padding: 1rem 0.5rem; }
-            .page-wrapper { border-radius: 16px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); }
-            .hero h1 { font-size: 3.5rem; }
-            .header-left { width: 100%; justify-content: space-between; margin-bottom: 1rem; }
+            html, body {
+                padding: 1rem 0.5rem; 
+            }
+            
+            .page-wrapper {
+                border-radius: 16px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            }
+
+            .hero h1 { font-size: 3rem; }
             .nav-pill { display: none; }
+            
             .hero-buttons { gap: 0.8rem; margin-bottom: 4rem; }
             .btn { padding: 0.8rem 1.5rem; font-size: 0.95rem; }
+            
             .carousel-heading { font-size: 2rem; }
-            .slide { flex: 0 0 280px; }
-            .carousel-track { padding: 0 calc(50% - 140px); }
+
+            .slide { 
+                flex: 0 0 280px; 
+            }
+            
+            .carousel-track {
+                padding: 0 calc(50% - 140px);
+            }
+            
             .nav-btn { display: none; } 
-            .header { flex-direction: column; align-items: stretch; margin-bottom: 2rem; }
-            .social-icons { align-self: center; margin-top: 1rem; }
         }
     </style>
 </head>
@@ -408,57 +348,37 @@
 
 <div class="page-wrapper">
 
-    <!-- Header & Navigation -->
+    <!-- Header & Hero -->
     <div class="top-section">
         <header class="header">
-            
-            <!-- Logo & Language Switcher -->
-            <div class="header-left">
-                <div class="lang-switcher">
-                    <button class="lang-btn"><span id="active-flag">🇨🇿</span> <i class="fas fa-chevron-down"></i></button>
-                    <div class="lang-dropdown">
-                        <a href="#" onclick="changeLang('cs', '🇨🇿', event)">🇨🇿 CZ</a>
-                        <a href="#" onclick="changeLang('en', '🇬🇧', event)">🇬🇧 EN</a>
-                        <a href="#" onclick="changeLang('uk', '🇺🇦', event)">🇺🇦 UKR</a>
-                        <a href="#" onclick="changeLang('pl', '🇵🇱', event)">🇵🇱 PL</a>
-                        <a href="#" onclick="changeLang('fr', '🇫🇷', event)">🇫🇷 FR</a>
-                        <a href="#" onclick="changeLang('es', '🇪🇸', event)">🇪🇸 ES</a>
-                    </div>
-                </div>
-                <div class="logo">Plynth</div>
-            </div>
-
-            <!-- Main Nav -->
+            <div class="logo">Plynth</div>
             <nav class="nav-pill">
-                <a href="#" class="active" data-i18n="nav_home">Domů</a>
-                <a href="#" data-i18n="nav_services">Služby</a>
-                <a href="#" data-i18n="nav_projects">Projekty</a>
-                <a href="#" data-i18n="nav_gallery">Galerie</a>
-                <a href="#" data-i18n="nav_contact">Kontakt</a>
+                <a href="#" class="active">Domů</a>
+                <a href="#">Služby</a>
+                <a href="#">Projekty</a>
+                <a href="#">Galerie</a>
+                <a href="#">Kontakt</a>
             </nav>
-
-            <!-- Socials -->
             <div class="social-icons">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
             </div>
         </header>
 
-        <!-- Hero Section -->
         <main class="hero">
-            <h1>Plynth<br>Studio</h1>
-            <p class="subtitle-main" data-i18n="hero_sub1">Architektura a interior design</p>
-            <p class="subtitle-desc" data-i18n="hero_sub2">Více než mileniální šeď. Návrhy. Realizace i rekonstrukce na klíč. Po celé ČR, včetně realizace. Stylové bydlení nemusí stát jmění.</p>
+            <h1>Studio<br>Plynth</h1>
+            <p>Architektura a interior design<br> Více než mileniální šeď. Návrhy. Realizace i rekonstrukce na klíč. Stylové bydlení nemusí stát jmění. </p>
             
-            <!-- Buttons -->
+            <!-- 3 Buttons -->
             <div class="hero-buttons">
-                <a href="#" class="btn btn-light" data-i18n="btn_pricing">Ceník a služby</a>
-                <a href="#" class="btn btn-light" data-i18n="btn_projects">Projekty a realizace</a>
-                <a href="#" class="btn btn-dark" data-i18n="btn_meeting">Domluvte si schůzku</a>
+                <a href="#" class="btn btn-light">Ceník a služby</a>
+                <a href="#" class="btn btn-light">Projekty a realizace</a>
+                <a href="#" class="btn btn-dark">Domluvte si schůzku</a>
             </div>
 
             <!-- Carousel Heading -->
-            <h2 class="carousel-heading" data-i18n="carousel_heading">Styly a naše projekty</h2>
+            <h2 class="carousel-heading">Styly a naše projekty</h2>
         </main>
     </div>
 
@@ -477,8 +397,8 @@
                 </div>
                 
                 <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=600&q=80" alt="Mid Century">
-                    <div class="slide-label">Mid Century</div>
+                    <img src="http://googleusercontent.com/image_collection/image_retrieval/15168641929561412827_0" alt="Bauhaus">
+                    <div class="slide-label">Bauhaus</div>
                 </div>
                 
                 <div class="slide">
@@ -498,7 +418,7 @@
                 
                 <div class="slide">
                     <img src="https://blog.canadianloghomes.com/wp-content/uploads/2023/06/japandi-style-interior-design.jpg" alt="Rustic">
-                    <div class="slide-label" data-i18n="style_rustic">Rustikální</div>
+                    <div class="slide-label">Rustic</div>
                 </div>
 
                 <div class="slide">
@@ -518,7 +438,7 @@
 
                 <div class="slide">
                     <img src="https://www.juliettesinteriors.co.uk/wp-content/uploads/2024/12/luxury-interior-design-guides-hero-image-hgh-res-juliettes-interiors-540x412.jpg" alt="Luxury">
-                    <div class="slide-label" data-i18n="style_luxury">Luxusní</div>
+                    <div class="slide-label">Luxurious</div>
                 </div>
 
             </div>
@@ -545,21 +465,19 @@
 
     <!-- Footer Call to Action -->
     <footer class="footer-cta">
-        <p data-i18n="footer_text">Navrhujeme soukromé rezidence a komerční prostory od čistého stolu.<br>Žádné šablony. Žádné opakované půdorysy. Žádné zkratky.</p>
+        <p> Dopřejte si více než mileniální šeď! </p>
     </footer>
 
 </div> <!-- End of page-wrapper -->
 
-    <!-- Scripts -->
+    <!-- Carousel Logic -->
     <script>
-        /* ----------------------------------------------------
-           1. CAROUSEL LOGIC
-        ---------------------------------------------------- */
         const track = document.getElementById('track');
         const btnLeft = document.getElementById('btnLeft');
         const btnRight = document.getElementById('btnRight');
         const dots = document.querySelectorAll('.dot');
 
+        // Function to update the active dot based on scroll position
         const updateDots = () => {
             const scrollPercentage = track.scrollLeft / (track.scrollWidth - track.clientWidth);
             const activeIndex = Math.round(scrollPercentage * (dots.length - 1));
@@ -573,8 +491,16 @@
             });
         };
 
-        btnLeft.addEventListener('click', () => track.scrollBy({ left: -365, behavior: 'smooth' }));
-        btnRight.addEventListener('click', () => track.scrollBy({ left: 365, behavior: 'smooth' }));
+        // Scroll logic for arrows
+        btnLeft.addEventListener('click', () => {
+            track.scrollBy({ left: -365, behavior: 'smooth' });
+        });
+
+        btnRight.addEventListener('click', () => {
+            track.scrollBy({ left: 365, behavior: 'smooth' });
+        });
+
+        // Listen for user scrolling
         track.addEventListener('scroll', updateDots);
 
         // Center the carousel on page load
@@ -585,85 +511,6 @@
                 updateDots();
             }, 50);
         });
-
-        /* ----------------------------------------------------
-           2. LANGUAGE TRANSLATION DICTIONARY
-        ---------------------------------------------------- */
-        const translations = {
-            cs: {
-                nav_home: "Domů", nav_services: "Služby", nav_projects: "Projekty", nav_gallery: "Galerie", nav_contact: "Kontakt",
-                hero_sub1: "Architektura a interior design",
-                hero_sub2: "Více než mileniální šeď. Návrhy. Realizace i rekonstrukce na klíč. Stylové bydlení nemusí stát jmění.",
-                btn_pricing: "Ceník a služby", btn_projects: "Projekty a realizace", btn_meeting: "Domluvte si schůzku",
-                carousel_heading: "Styly a naše projekty",
-                style_rustic: "Rustikální", style_luxury: "Luxusní",
-                footer_text: "Navrhujeme soukromé rezidence a komerční prostory od čistého stolu.<br>Žádné šablony. Žádné opakované půdorysy. Žádné zkratky."
-            },
-            en: {
-                nav_home: "Home", nav_services: "Services", nav_projects: "Projects", nav_gallery: "Gallery", nav_contact: "Contact",
-                hero_sub1: "Architecture and interior design",
-                hero_sub2: "More than millennial grey. Designs. Turnkey realizations and reconstructions. Stylish living doesn't have to cost a fortune.",
-                btn_pricing: "Pricing & Services", btn_projects: "Projects & Realizations", btn_meeting: "Book an appointment",
-                carousel_heading: "Styles and our projects",
-                style_rustic: "Rustic", style_luxury: "Luxurious",
-                footer_text: "We design private residences and commercial spaces from a blank page.<br>No templates. No repeated floor plans. No shortcuts."
-            },
-            uk: {
-                nav_home: "Головна", nav_services: "Послуги", nav_projects: "Проєкти", nav_gallery: "Галерея", nav_contact: "Контакти",
-                hero_sub1: "Архітектура та дизайн інтер'єру",
-                hero_sub2: "Більше, ніж міленіальний сірий. Дизайн. Реалізація та реконструкція під ключ. Стильне житло не обов'язково коштує цілий статок.",
-                btn_pricing: "Ціни та послуги", btn_projects: "Проєкти та реалізація", btn_meeting: "Записатися на зустріч",
-                carousel_heading: "Стилі та наші проєкти",
-                style_rustic: "Рустик", style_luxury: "Розкішний",
-                footer_text: "Ми проектуємо приватні резиденції та комерційні приміщення з чистого аркуша.<br>Ніяких шаблонів. Ніколи не повторюємо планування. Ніяких компромісів."
-            },
-            pl: {
-                nav_home: "Strona główna", nav_services: "Usługi", nav_projects: "Projekty", nav_gallery: "Galeria", nav_contact: "Kontakt",
-                hero_sub1: "Architektura i projektowanie wnętrz",
-                hero_sub2: "Więcej niż milenialna szarość. Projekty. Realizacje i przebudowy pod klucz. Stylowe mieszkanie nie musi kosztować fortuny.",
-                btn_pricing: "Cennik i usługi", btn_projects: "Projekty i realizacje", btn_meeting: "Umów się na spotkanie",
-                carousel_heading: "Style i nasze projekty",
-                style_rustic: "Rustykalny", style_luxury: "Luksusowy",
-                footer_text: "Projektujemy prywatne rezydencje i przestrzenie komercyjne od zera.<br>Żadnych szablonów. Żadnych powtarzalnych planów. Żadnych dróg na skróty."
-            },
-            fr: {
-                nav_home: "Accueil", nav_services: "Services", nav_projects: "Projets", nav_gallery: "Galerie", nav_contact: "Contact",
-                hero_sub1: "Architecture et design d'intérieur",
-                hero_sub2: "Plus que du gris millénaire. Conceptions. Réalisations et reconstructions clés en main. Une vie élégante ne doit pas coûter une fortune.",
-                btn_pricing: "Tarifs et services", btn_projects: "Projets et réalisations", btn_meeting: "Prendre rendez-vous",
-                carousel_heading: "Styles et nos projets",
-                style_rustic: "Rustique", style_luxury: "Luxueux",
-                footer_text: "Nous concevons des résidences privées et des espaces commerciaux à partir d'une page blanche.<br>Pas de modèles. Pas de plans répétitifs. Pas de raccourcis."
-            },
-            es: {
-                nav_home: "Inicio", nav_services: "Servicios", nav_projects: "Proyectos", nav_gallery: "Galería", nav_contact: "Contacto",
-                hero_sub1: "Arquitectura y diseño de interiores",
-                hero_sub2: "Más que gris millennial. Diseños. Realizaciones y reconstrucciones llave en mano. Vivir con estilo no tiene por qué costar una fortuna.",
-                btn_pricing: "Precios y servicios", btn_projects: "Proyectos y realizaciones", btn_meeting: "Reserva una cita",
-                carousel_heading: "Estilos y nuestros proyectos",
-                style_rustic: "Rústico", style_luxury: "Lujoso",
-                footer_text: "Diseñamos residencias privadas y espacios comerciales desde cero.<br>Sin plantillas. Sin planos repetidos. Sin atajos."
-            }
-        };
-
-        // Function triggered when language is clicked
-        function changeLang(lang, flagEmoji, event) {
-            if(event) event.preventDefault(); // Stop page from jumping to top
-            
-            // 1. Update the flag in the button
-            document.getElementById('active-flag').innerText = flagEmoji;
-            
-            // 2. Fetch the corresponding dictionary
-            const dict = translations[lang];
-            
-            // 3. Find all elements with a 'data-i18n' attribute and swap their text
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if(dict[key]) {
-                    element.innerHTML = dict[key]; // innerHTML allows the <br> tags to work
-                }
-            });
-        }
     </script>
 </body>
 </html>
