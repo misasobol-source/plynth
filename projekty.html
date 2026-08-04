@@ -6,59 +6,60 @@
     <title>Studio Plynth</title>
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        /* --- CONCRETE BACKGROUND --- */
+        /* --- MOCKUP PRESENTATION BACKGROUND --- */
         html, body {
             background-image: url('https://muralsyourway.vtexassets.com/arquivos/ids/241255/Dark-Gray-Concrete-Wallpaper-Mural.jpg?v=638165403901970000');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            background-color: #e0e5e9; 
             color: #1a1a1a;
             overflow-x: hidden;
             width: 100%;
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            padding: 3rem 1.5rem; 
+            padding: 3rem 2rem; 
         }
 
-        /* --- WIDER PAGE WRAPPER --- */
         .page-wrapper {
-            background-color: #fcfbf9; /* Off-white from the reference image */
+            background-color: #f8f7f4; 
             width: 100%;
-            max-width: 1500px; /* Wider panel */
+            max-width: 1200px;
             border-radius: 24px; 
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4); 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); 
+            overflow: hidden; 
+            position: relative;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            align-items: center;
         }
 
-        /* --- HEADER SECTION --- */
         .top-section {
             width: 100%;
-            padding: 3rem 4rem 0 4rem; 
+            padding: 3rem 2rem 0 2rem; 
+            margin: 0 auto;
+            position: relative;
+            z-index: 20; 
         }
 
         .header {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 6rem;
+            margin-bottom: 5rem;
+            width: 100%;
         }
 
+        /* Flex: 1 ensures left and right sections take equal space, forcing the center nav to be perfectly in the middle */
         .header-left {
             display: flex;
             align-items: center;
@@ -66,24 +67,37 @@
             flex: 1;
         }
 
-        /* Lang Switcher Pill */
+        .header-center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+            font-size: 1.2rem;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
         .lang-switcher {
             position: relative;
+            display: inline-block;
         }
 
         .lang-btn {
-            background: transparent;
-            border: 1px solid #dcdcdc;
+            background: #fff;
+            border: 1px solid #d1d1d1;
             border-radius: 50px;
             padding: 0.5rem 1rem;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 1rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
             color: #1a1a1a;
-            font-weight: 500;
-            transition: background 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.2s;
         }
 
         .lang-btn:hover { background: #f0f0f0; }
@@ -91,13 +105,13 @@
         .lang-dropdown {
             display: none; 
             position: absolute;
-            top: 115%;
+            top: 110%;
             left: 0;
             background: #fff;
-            border: 1px solid #dcdcdc;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            min-width: 120px;
+            border: 1px solid #d1d1d1;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            min-width: 140px;
             z-index: 100;
             overflow: hidden;
         }
@@ -111,173 +125,161 @@
             padding: 0.8rem 1.2rem;
             text-decoration: none;
             color: #1a1a1a;
-            font-size: 0.85rem;
+            font-size: 0.95rem;
+            font-weight: 500;
             transition: background 0.2s;
         }
 
         .lang-dropdown a:hover { background: #f5f5f5; }
 
         .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            color: #1a1a1a;
-        }
-
-        /* Navigation Pill */
-        .header-center {
-            display: flex;
-            justify-content: center;
-            flex: 1;
+            font-family: serif;
+            font-size: 2.2rem;
+            font-weight: bold;
+            letter-spacing: -1px;
         }
 
         .nav-pill {
             display: flex;
             gap: 1.5rem;
-            border: 1px solid #dcdcdc;
+            border: 1px solid #d1d1d1;
             border-radius: 50px;
-            padding: 0.6rem 2rem;
-            background: transparent;
+            padding: 0.8rem 2.5rem;
+            background: #f8f7f4;
         }
 
         .nav-pill a {
             text-decoration: none;
-            color: #555;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s;
+            color: #444;
+            font-size: 0.95rem;
         }
 
         .nav-pill a.active, .nav-pill a:hover {
             color: #000;
-            font-weight: 700;
+            font-weight: 500;
         }
 
-        /* Social Icons */
-        .header-right {
-            display: flex;
-            gap: 1.2rem;
-            font-size: 1.1rem;
-            flex: 1;
-            justify-content: flex-end;
-            align-items: center;
-        }
-
-        .header-right a {
+        .social-icons a {
             color: #1a1a1a;
             text-decoration: none;
-            transition: opacity 0.2s;
         }
 
-        .header-right a:hover { opacity: 0.6; }
-
-
-        /* --- HERO SECTION --- */
         .hero {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 2rem;
         }
 
         .hero h1 {
-            font-size: 6.5rem; /* Massive bold text like the image */
-            font-weight: 900;
-            line-height: 0.9;
+            line-height: 0.85; /* Malá mezera mezi Studio a Plynth */
+            font-weight: 800;
             letter-spacing: -2px;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             display: flex;
             flex-direction: column;
-            color: #1a1a1a;
+        }
+        
+        .hero h1 .word-studio {
+             font-size: 5.7rem; /* O něco větší než Plynth (přidáno pár px) */
+        }
+        
+        .hero h1 .word-plynth {
+             font-size: 5.5rem; /* Základní velikost */
         }
 
         .hero p.subtitle-main {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: #333;
-            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            color: #444;
+            margin-bottom: 0.5rem;
         }
 
         .hero p.subtitle-desc {
-            font-size: 0.95rem;
-            color: #777;
-            line-height: 1.6;
-            max-width: 650px;
+            font-size: 1.05rem;
+            color: #666;
+            line-height: 1.5;
+            max-width: 700px;
             margin: 0 auto;
         }
 
-        /* Pill Buttons */
         .hero-buttons {
             display: flex;
             justify-content: center;
             flex-wrap: wrap; 
             gap: 1rem;
             margin-top: 2.5rem;
+            margin-bottom: 5rem;
         }
 
         .btn {
-            padding: 0.8rem 2rem;
+            padding: 0.9rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
+            font-size: 1rem;
+            font-weight: 500;
             text-align: center;
             cursor: pointer;
-            transition: transform 0.2s, opacity 0.2s;
         }
-        
-        .btn:hover { transform: translateY(-2px); }
+
+        .btn-dark {
+            background-color: #1f1e1c;
+            color: #fff;
+            border: 1px solid #1f1e1c;
+        }
 
         .btn-light {
             background-color: transparent;
-            color: #1a1a1a;
-            border: 1px solid #dcdcdc;
+            color: #1f1e1c;
+            border: 1px solid #d1d1d1;
         }
 
-        .btn-light:hover { background-color: #f0f0f0; }
-
-        .btn-dark {
-            background-color: #1a1a1a;
-            color: #fff;
-            border: 1px solid #1a1a1a;
-        }
-
-        .btn-dark:hover { opacity: 0.8; }
-
-
-        /* --- HORIZONTAL GALLERY --- */
         .carousel-heading {
-            font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
             font-weight: 700;
             letter-spacing: -1px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             color: #1a1a1a;
-            text-align: center;
-            margin-top: 2rem;
         }
 
         .gallery-section {
-            width: 100%;
-            height: 500px; 
             position: relative;
-            margin-bottom: 4rem;
+            width: 100%;
+            height: 550px; 
+            margin: 0 0 2rem 0; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
+        .curve-top, .curve-bottom {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150%; 
+            height: 200px; 
+            background-color: #f8f7f4;
+            border-radius: 50%;
+            z-index: 5;
+            pointer-events: none; 
+        }
+
+        .curve-top { top: -150px; }
+        .curve-bottom { bottom: -150px; }
 
         .carousel-container {
             width: 100%;
             height: 100%;
             position: relative;
+            z-index: 1; 
         }
 
         .carousel-track {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             width: 100%;
             height: 100%;
             overflow-x: auto;
             scroll-behavior: smooth;
             scroll-snap-type: x mandatory; 
-            padding: 0 calc(50% - 200px); 
+            padding: 0 calc(50% - 175px); 
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
@@ -285,11 +287,11 @@
         .carousel-track::-webkit-scrollbar { display: none; }
 
         .slide {
-            flex: 0 0 400px; 
+            flex: 0 0 350px; 
             height: 100%;
             scroll-snap-align: center; 
             position: relative;
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
         }
 
@@ -304,11 +306,11 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            padding: 4rem 1.5rem 2rem; 
+            padding: 4rem 1.5rem 3.5rem; 
             background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
             color: #fff;
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 1.2rem;
+            font-weight: 500;
             text-align: center;
             pointer-events: none;
         }
@@ -317,49 +319,78 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.7);
             border: 1px solid rgba(0,0,0,0.1);
             color: #1a1a1a;
             width: 50px;
             height: 50px;
-            border-radius: 50%;
+            border-radius: 0;
             cursor: pointer;
             z-index: 10;
-            font-size: 1rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.2s, background 0.2s;
+            font-size: 1.2rem;
+            backdrop-filter: blur(5px);
+            transition: background 0.2s;
         }
 
-        .nav-btn:hover { background: #fff; transform: translateY(-50%) scale(1.05); }
-        .nav-left { left: 2rem; }
-        .nav-right { right: 2rem; }
+        .nav-btn:hover { background: rgba(255, 255, 255, 1); }
+        .nav-left { left: 1rem; }
+        .nav-right { right: 1rem; }
+
+        .pagination {
+            position: absolute;
+            bottom: 35px; 
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #c4c4c4;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .dot.active { background-color: #4a4a4a; }
 
         .footer-cta {
             text-align: center;
-            padding: 0 2rem 4rem 2rem;
+            padding: 3rem 2rem 5rem 2rem;
+            width: 100%;
+            background-color: #f8f7f4;
+            position: relative;
+            z-index: 10;
         }
 
         .footer-cta p {
-            font-size: 1rem;
-            color: #777;
-            line-height: 1.6;
-        }
-
-        /* --- RESPONSIVE DESIGN --- */
-        @media (max-width: 1024px) {
-            .header { flex-direction: column; gap: 2rem; }
-            .header-left, .header-center, .header-right { width: 100%; justify-content: center; }
-            .header-right { margin-top: 1rem; }
-            .hero h1 { font-size: 5rem; }
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            margin-bottom: 2rem;
+            line-height: 1.5;
         }
 
         @media (max-width: 768px) {
-            html, body { padding: 1rem; }
-            .top-section { padding: 2rem 1.5rem 0; }
-            .hero h1 { font-size: 4rem; }
-            .nav-pill { display: none; } /* Hide pill nav on mobile */
-            .slide { flex: 0 0 300px; }
-            .carousel-track { padding: 0 calc(50% - 150px); }
+            html, body { padding: 1rem 0.5rem; }
+            .page-wrapper { border-radius: 16px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); }
+            
+            /* Responsive sizes for Studio Plynth */
+            .hero h1 .word-studio { font-size: 3.7rem; }
+            .hero h1 .word-plynth { font-size: 3.5rem; }
+            
+            .header { flex-direction: column; align-items: stretch; margin-bottom: 2rem; }
+            .header-left { width: 100%; justify-content: space-between; margin-bottom: 1rem; }
+            .nav-pill { display: none; }
+            .social-icons { justify-content: center; margin-top: 1rem; }
+            
+            .hero-buttons { gap: 0.8rem; margin-bottom: 4rem; }
+            .btn { padding: 0.8rem 1.5rem; font-size: 0.95rem; }
+            .carousel-heading { font-size: 2rem; }
+            .slide { flex: 0 0 280px; }
+            .carousel-track { padding: 0 calc(50% - 140px); }
             .nav-btn { display: none; } 
         }
     </style>
@@ -371,23 +402,23 @@
     <div class="top-section">
         <header class="header">
             
-            <!-- Lang & Logo -->
+            <!-- Logo & Language Switcher -->
             <div class="header-left">
                 <div class="lang-switcher">
-                    <button class="lang-btn"><span id="active-flag">cz</span> <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></button>
+                    <button class="lang-btn"><span id="active-flag">🇨🇿</span> <i class="fas fa-chevron-down"></i></button>
                     <div class="lang-dropdown">
-                        <a href="#" onclick="changeLang('cs', 'cz', event)">🇨🇿 CZ</a>
-                        <a href="#" onclick="changeLang('en', 'en', event)">🇬🇧 EN</a>
-                        <a href="#" onclick="changeLang('uk', 'uk', event)">🇺🇦 UKR</a>
-                        <a href="#" onclick="changeLang('pl', 'pl', event)">🇵🇱 PL</a>
-                        <a href="#" onclick="changeLang('fr', 'fr', event)">🇫🇷 FR</a>
-                        <a href="#" onclick="changeLang('es', 'es', event)">🇪🇸 ES</a>
+                        <a href="#" onclick="changeLang('cs', '🇨🇿', event)">🇨🇿 CZ</a>
+                        <a href="#" onclick="changeLang('en', '🇬🇧', event)">🇬🇧 EN</a>
+                        <a href="#" onclick="changeLang('uk', '🇺🇦', event)">🇺🇦 UKR</a>
+                        <a href="#" onclick="changeLang('pl', '🇵🇱', event)">🇵🇱 PL</a>
+                        <a href="#" onclick="changeLang('fr', '🇫🇷', event)">🇫🇷 FR</a>
+                        <a href="#" onclick="changeLang('es', '🇪🇸', event)">🇪🇸 ES</a>
                     </div>
                 </div>
                 <div class="logo">Plynth</div>
             </div>
 
-            <!-- Pill Navigation -->
+            <!-- Main Nav (Centered) -->
             <div class="header-center">
                 <nav class="nav-pill">
                     <a href="#" class="active" data-i18n="nav_home">Domů</a>
@@ -398,7 +429,7 @@
             </div>
 
             <!-- Socials -->
-            <div class="header-right">
+            <div class="social-icons">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
             </div>
@@ -410,25 +441,28 @@
                 <span class="word-plynth">Plynth</span>
             </h1>
             <p class="subtitle-main" data-i18n="hero_sub1">Architektura a interior design</p>
-            <p class="subtitle-desc" data-i18n="hero_sub2">Více než mileniální šeď. Návrhy. Realizace i rekonstrukce na klíč. Po celé ČR, včetně realizace. Stylové bydlení nemusí stát jmění.</p>
+            <p class="subtitle-desc" data-i18n="hero_sub2">Více než mileniální šeď. Návrhy. Realizace i rekonstrukce na klíč. Po celé ČR, až k Vám domů. Stylové bydlení nemusí stát jmění.</p>
             
-            <!-- Pill Buttons -->
+            <!-- Buttons -->
             <div class="hero-buttons">
                 <a href="#" class="btn btn-light" data-i18n="btn_pricing">Ceník a služby</a>
                 <a href="#" class="btn btn-light" data-i18n="btn_projects">Projekty a realizace</a>
                 <a href="#" class="btn btn-dark" data-i18n="btn_meeting">Domluvte si schůzku</a>
             </div>
-            
+
+            <!-- Carousel Heading -->
             <h2 class="carousel-heading" data-i18n="carousel_heading">Styly a naše projekty</h2>
         </main>
     </div>
 
-    <!-- Horizontal Carousel Gallery -->
     <section class="gallery-section">
+        <div class="curve-top"></div>
+        
         <div class="carousel-container">
             <button class="nav-btn nav-left" id="btnLeft"><i class="fas fa-chevron-left"></i></button>
             
             <div class="carousel-track" id="track">
+                
                 <div class="slide">
                     <img src="https://cdn.lampenlicht.nl/m/catalog/product/1/0/4079_109454_0.jpg?profile=product_page_image_large" alt="Japandi">
                     <div class="slide-label">Japandi</div>
@@ -443,50 +477,102 @@
                     <img src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=600&q=80" alt="Parisian Luxury">
                     <div class="slide-label">Parisian Luxury</div>
                 </div>
+
+                <div class="slide">
+                    <img src="https://cococozy.com/wp-content/uploads/2021/10/Horseshoe-Bay-17-scaled-aspect-ratio-1000-1400-scaled-1.jpeg" alt="Medievalism">
+                    <div class="slide-label">Medievalism</div>
+                </div>
                 
                 <div class="slide">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_gpiEtis9snl5z6tYUMMrLDp_cnsEdpG7PQr6e_8g07wO5YQIvm9OQV8g&s=10" alt="Eco Brutalism">
                     <div class="slide-label">Eco Brutalism</div>
+                </div>
+                
+                <div class="slide">
+                    <img src="https://blog.canadianloghomes.com/wp-content/uploads/2023/06/japandi-style-interior-design.jpg" alt="Rustic">
+                    <div class="slide-label" data-i18n="style_rustic">Rustikální</div>
+                </div>
+
+                <div class="slide">
+                    <img src="https://www.decorilla.com/online-decorating/wp-content/uploads/2024/02/Luxury-contemporary-interior-design-for-a-condo.jpg" alt="Moderna">
+                    <div class="slide-label">Moderna</div>
                 </div>
 
                 <div class="slide">
                     <img src="https://images.surferseo.art/7cf9acd3-23fa-4813-b853-acee2caf36b5.jpeg" alt="Industrial">
                     <div class="slide-label">Industrial</div>
                 </div>
+
+                <div class="slide">
+                    <img src="https://cdn.shopify.com/s/files/1/0691/8363/5772/files/Scandinavian_Interior_Design_600x600.jpg?v=1747381870" alt="Scandi">
+                    <div class="slide-label">Scandi</div>
+                </div>
+
+                <div class="slide">
+                    <img src="https://www.juliettesinteriors.co.uk/wp-content/uploads/2024/12/luxury-interior-design-guides-hero-image-hgh-res-juliettes-interiors-540x412.jpg" alt="Luxury">
+                    <div class="slide-label" data-i18n="style_luxury">Luxusní</div>
+                </div>
+
             </div>
 
             <button class="nav-btn nav-right" id="btnRight"><i class="fas fa-chevron-right"></i></button>
+
+            <!-- 10 Pagination Dots -->
+            <div class="pagination">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
         </div>
+
+        <div class="curve-bottom"></div>
     </section>
 
     <footer class="footer-cta">
         <p data-i18n="footer_text">Navrhujeme soukromé rezidence a komerční prostory od čistého stolu.<br>Žádné šablony. Žádné opakované půdorysy. Žádné zkratky.</p>
     </footer>
 
-</div>
+</div> <!-- End of page-wrapper -->
 
     <script>
-        /* ----------------------------------------------------
-           1. CAROUSEL LOGIC
-        ---------------------------------------------------- */
         const track = document.getElementById('track');
         const btnLeft = document.getElementById('btnLeft');
         const btnRight = document.getElementById('btnRight');
-        const slideWidth = 420; // 400px slide width + 20px gap
+        const dots = document.querySelectorAll('.dot');
 
-        btnLeft.addEventListener('click', () => track.scrollBy({ left: -slideWidth, behavior: 'smooth' }));
-        btnRight.addEventListener('click', () => track.scrollBy({ left: slideWidth, behavior: 'smooth' }));
+        const updateDots = () => {
+            const scrollPercentage = track.scrollLeft / (track.scrollWidth - track.clientWidth);
+            const activeIndex = Math.round(scrollPercentage * (dots.length - 1));
+            
+            dots.forEach((dot, index) => {
+                if (index === activeIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        };
 
+        btnLeft.addEventListener('click', () => track.scrollBy({ left: -365, behavior: 'smooth' }));
+        btnRight.addEventListener('click', () => track.scrollBy({ left: 365, behavior: 'smooth' }));
+        track.addEventListener('scroll', updateDots);
+
+        // Center the carousel on page load
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const maxScroll = track.scrollWidth - track.clientWidth;
                 track.scrollLeft = maxScroll / 2;
+                updateDots();
             }, 50);
         });
 
-        /* ----------------------------------------------------
-           2. LANGUAGE TRANSLATION LOGIC
-        ---------------------------------------------------- */
         const translations = {
             cs: {
                 nav_home: "Domů", nav_services: "Služby", nav_projects: "Projekty", nav_contact: "Kontakt",
@@ -494,6 +580,7 @@
                 hero_sub2: "Více než mileniální šeď. Návrhy. Realizace i rekonstrukce na klíč. Po celé ČR, včetně realizace. Stylové bydlení nemusí stát jmění.",
                 btn_pricing: "Ceník a služby", btn_projects: "Projekty a realizace", btn_meeting: "Domluvte si schůzku",
                 carousel_heading: "Styly a naše projekty",
+                style_rustic: "Rustikální", style_luxury: "Luxusní",
                 footer_text: "Navrhujeme soukromé rezidence a komerční prostory od čistého stolu.<br>Žádné šablony. Žádné opakované půdorysy. Žádné zkratky."
             },
             en: {
@@ -502,17 +589,53 @@
                 hero_sub2: "More than millennial grey. Designs. Turnkey realizations and reconstructions. Across the whole CZ, including realization. Stylish living doesn't have to cost a fortune.",
                 btn_pricing: "Pricing & Services", btn_projects: "Projects & Realizations", btn_meeting: "Book an appointment",
                 carousel_heading: "Styles and our projects",
+                style_rustic: "Rustic", style_luxury: "Luxurious",
                 footer_text: "We design private residences and commercial spaces from a blank page.<br>No templates. No repeated floor plans. No shortcuts."
+            },
+            uk: {
+                nav_home: "Головна", nav_services: "Послуги", nav_projects: "Проєкти", nav_contact: "Контакти",
+                hero_sub1: "Архітектура та дизайн інтер'єру",
+                hero_sub2: "Більше, ніж міленіальний сірий. Дизайн. Реалізація та реконструкція під ключ. По всій Чехії, включаючи реалізацію. Стильне житло не обов'язково коштує цілий статок.",
+                btn_pricing: "Ціни та послуги", btn_projects: "Проєкти та реалізація", btn_meeting: "Записатися на зустріч",
+                carousel_heading: "Стилі та наші проєкти",
+                style_rustic: "Рустик", style_luxury: "Розкішний",
+                footer_text: "Ми проектуємо приватні резиденції та комерційні приміщення з чистого аркуша.<br>Ніяких шаблонів. Ніколи не повторюємо планування. Ніяких компромісів."
+            },
+            pl: {
+                nav_home: "Strona główna", nav_services: "Usługi", nav_projects: "Projekty", nav_contact: "Kontakt",
+                hero_sub1: "Architektura i projektowanie wnętrz",
+                hero_sub2: "Więcej niż milenialna szarość. Projekty. Realizacje i przebudowy pod klucz. Na terenie całych Czech, w tym realizacja. Stylowe mieszkanie nie musi kosztować fortuny.",
+                btn_pricing: "Cennik i usługi", btn_projects: "Projekty i realizacje", btn_meeting: "Umów się spotkanie",
+                carousel_heading: "Style i nasze projekty",
+                style_rustic: "Rustykalny", style_luxury: "Luksusowy",
+                footer_text: "Projektujemy prywatne rezydencje i przestrzenie komercyjne od zera.<br>Żadnych szablonów. Żadnych powtarzalnych planów. Żadnych dróg na skróty."
+            },
+            fr: {
+                nav_home: "Accueil", nav_services: "Services", nav_projects: "Projets", nav_contact: "Contact",
+                hero_sub1: "Architecture et design d'intérieur",
+                hero_sub2: "Plus que du gris millénaire. Conceptions. Réalisations et reconstructions clés en main. Dans toute la République tchèque, réalisation comprise. Une vie élégante ne doit pas coûter une fortune.",
+                btn_pricing: "Tarifs et services", btn_projects: "Projets et réalisations", btn_meeting: "Prendre rendez-vous",
+                carousel_heading: "Styles et nos projets",
+                style_rustic: "Rustique", style_luxury: "Luxueux",
+                footer_text: "Nous concevons des résidences privées et des espaces commerciaux à partir d'une page blanche.<br>Pas de modèles. Pas de plans répétitifs. Pas de raccourcis."
+            },
+            es: {
+                nav_home: "Inicio", nav_services: "Servicios", nav_projects: "Proyectos", nav_contact: "Contacto",
+                hero_sub1: "Arquitectura y diseño de interiores",
+                hero_sub2: "Más que gris millennial. Diseños. Realizaciones y reconstrucciones llave en mano. En toda la República Checa, incluyendo la realización. Vivir con estilo no tiene por qué costar una fortuna.",
+                btn_pricing: "Precios y servicios", btn_projects: "Proyectos y realizaciones", btn_meeting: "Reserva una cita",
+                carousel_heading: "Estilos y nuestros proyectos",
+                style_rustic: "Rústico", style_luxury: "Lujoso",
+                footer_text: "Diseñamos residencias privadas y espacios comerciales desde cero.<br>Sin plantillas. Sin planos repetidos. Sin atajos."
             }
         };
 
-        function changeLang(lang, flagText, event) {
+        // Function triggered when language is clicked
+        function changeLang(lang, flagEmoji, event) {
             if(event) event.preventDefault(); 
             
-            document.getElementById('active-flag').innerText = flagText;
-            
-            // Only swap if we have translations defined for this lang, otherwise default to CS/EN structure
-            const dict = translations[lang] || translations['cs'];
+            document.getElementById('active-flag').innerText = flagEmoji;
+            const dict = translations[lang];
             
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.getAttribute('data-i18n');
