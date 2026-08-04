@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plynth Architecture Studio</title>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* --- MOCKUP PRESENTATION BACKGROUND --- */
+        html, body {
+            /* Premium white marble background */
+            background-image: url('https://plus.unsplash.com/premium_photo-1671410372744-989627ea0033?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG1hcmJsZSUyMHdhbGxwYXBlcnxlbnwwfHwwfHx8MA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #e0e5e9; 
+            
+            color: #1a1a1a;
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+            
+            /* Center the website rectangle */
+            display: flex;
+            justify-content: center;
+            padding: 3rem 2rem; 
+        }
+
+        /* Wrapper acting as the Website Rectangle */
+        .page-wrapper {
+            background-color: #f8f7f4; 
+            width: 100%;
+            max-width: 1200px;
+            border-radius: 24px; 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); 
+            overflow: hidden; 
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Header & Navigation */
+        .top-section {
+            width: 100%;
+            padding: 3rem 2rem 0 2rem; 
+            margin: 0 auto;
+            position: relative;
+            z-index: 10; 
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .logo {
+            font-family: serif;
+            font-size: 2.2rem;
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+
+        .nav-pill {
+            display: flex;
+            gap: 1.5rem;
+            border: 1px solid #d1d1d1;
+            border-radius: 50px;
+            padding: 0.8rem 2.5rem;
+            background: #f8f7f4;
+        }
+
+        .nav-pill a {
+            text-decoration: none;
+            color: #444;
+            font-size: 0.95rem;
+        }
+
+        .nav-pill a.active, .nav-pill a:hover {
+            color: #000;
+            font-weight: 500;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+            font-size: 1.2rem;
+        }
+
+        .social-icons a {
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+
+        /* Hero Typography */
+        .hero {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1.05;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        /* Hero Buttons */
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; 
+            gap: 1rem;
+            margin-top: 2.5rem;
+            margin-bottom: 5rem;
+        }
+
+        .btn {
+            padding: 0.9rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .btn-dark {
+            background-color: #1f1e1c;
+            color: #fff;
+            border: 1px solid #1f1e1c;
+        }
+
+        .btn-light {
+            background-color: transparent;
+            color: #1f1e1c;
+            border: 1px solid #d1d1d1;
+        }
+
+        /* Carousel Heading */
+        .carousel-heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        /* --- The Carousel Section --- */
+        .gallery-section {
+            position: relative;
+            width: 100%;
+            height: 550px; 
+            margin: 0 0 2rem 0; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Flatter Double Curves */
+        .curve-top, .curve-bottom {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150%; 
+            height: 200px; 
+            background-color: #f8f7f4;
+            border-radius: 50%;
+            z-index: 5;
+            pointer-events: none; 
+        }
+
+        .curve-top { top: -150px; }
+        .curve-bottom { bottom: -150px; }
+
+        /* Carousel Track */
+        .carousel-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 1; 
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+            height: 100%;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory; 
+            padding: 0 calc(50% - 175px); 
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Individual Slides */
+        .slide {
+            flex: 0 0 350px; 
+            height: 100%;
+            scroll-snap-align: center; 
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Style Labels on Images */
+        .slide-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 4rem 1.5rem 3.5rem; 
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 500;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        /* Navigation Arrows */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0,0,0,0.1);
+            color: #1a1a1a;
+            width: 50px;
+            height: 50px;
+            border-radius: 0;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.2rem;
+            backdrop-filter: blur(5px);
+            transition: background 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .nav-left { left: 1rem; }
+        .nav-right { right: 1rem; }
+
+        /* Pagination Dots */
+        .pagination {
+            position: absolute;
+            bottom: 35px; 
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #c4c4c4;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .dot.active {
+            background-color: #4a4a4a;
+        }
+
+        /* Footer CTA */
+        .footer-cta {
+            text-align: center;
+            padding: 3rem 2rem 5rem 2rem;
+            width: 100%;
+            background-color: #f8f7f4;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-cta p {
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        /* --- Mobile Responsive Fixes --- */
+        @media (max-width: 768px) {
+            /* KEEP the marble background on mobile, but use less padding */
+            html, body {
+                padding: 1rem 0.5rem; 
+            }
+            
+            /* Keep the rectangle shape but reduce the rounding and shadow slightly */
+            .page-wrapper {
+                border-radius: 16px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            }
+
+            .hero h1 { font-size: 3rem; }
+            .nav-pill { display: none; }
+            
+            .hero-buttons { gap: 0.8rem; margin-bottom: 4rem; }
+            .btn { padding: 0.8rem 1.5rem; font-size: 0.95rem; }
+            
+            .carousel-heading { font-size: 2rem; }
+
+            .slide { 
+                flex: 0 0 280px; 
+            }
+            
+            .carousel-track {
+                padding: 0 calc(50% - 140px);
+            }
+            
+            .nav-btn { display: none; } 
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <!-- Header & Hero -->
+    <div class="top-section">
+        <header class="header">
+            <div class="logo">Plynth</div>
+            <nav class="nav-pill">
+                <a href="#" class="active">Home</a>
+                <a href="#">Services</a>
+                <a href="#">Projects</a>
+                <a href="#">Gallery</a>
+                <a href="#">Contact</a>
+            </nav>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </header>
+
+        <main class="hero">
+            <h1>Plynth<br>Architecture<br>Studio</h1>
+            <p>The building you deserve has never<br>been built before</p>
+            
+            <!-- 3 Buttons -->
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-light">Ceník a služby</a>
+                <a href="#" class="btn btn-light">Projekty a realizace</a>
+                <a href="#" class="btn btn-dark">Domluvte si schůzku</a>
+            </div>
+
+            <!-- Carousel Heading -->
+            <h2 class="carousel-heading">Styly a naše projekty</h2>
+        </main>
+    </div>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="curve-top"></div>
+        
+        <div class="carousel-container">
+            <button class="nav-btn nav-left" id="btnLeft"><i class="fas fa-chevron-left"></i></button>
+            
+            <div class="carousel-track" id="track">
+                
+                <div class="slide">
+                    <img src="https://cdn.lampenlicht.nl/m/catalog/product/1/0/4079_109454_0.jpg?profile=product_page_image_large" alt="Japandi">
+                    <div class="slide-label">Japandi</div>
+                </div>
+                
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=600&q=80" alt="Mid Century">
+                    <div class="slide-label">Mid Century</div>
+                </div>
+                
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=600&q=80" alt="Parisian Luxury">
+                    <div class="slide-label">Parisian Luxury</div>
+                </div>
+
+                <div class="slide">
+                    <img src="https://cococozy.com/wp-content/uploads/2021/10/Horseshoe-Bay-17-scaled-aspect-ratio-1000-1400-scaled-1.jpeg" alt="Medievalism">
+                    <div class="slide-label">Medievalism</div>
+                </div>
+                
+                <div class="slide">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_gpiEtis9snl5z6tYUMMrLDp_cnsEdpG7PQr6e_8g07wO5YQIvm9OQV8g&s=10" alt="Eco Brutalism">
+                    <div class="slide-label">Eco Brutalism</div>
+                </div>
+                
+                <div class="slide">
+                    <img src="https://blog.canadianloghomes.com/wp-content/uploads/2023/06/japandi-style-interior-design.jpg" alt="Rustic">
+                    <div class="slide-label">Rustic</div>
+                </div>
+
+                <div class="slide">
+                    <img src="https://www.decorilla.com/online-decorating/wp-content/uploads/2024/02/Luxury-contemporary-interior-design-for-a-condo.jpg" alt="Moderna">
+                    <div class="slide-label">Moderna</div>
+                </div>
+
+                <div class="slide">
+                    <img src="https://images.surferseo.art/7cf9acd3-23fa-4813-b853-acee2caf36b5.jpeg" alt="Industrial">
+                    <div class="slide-label">Industrial</div>
+                </div>
+
+                <div class="slide">
+                    <img src="https://cdn.shopify.com/s/files/1/0691/8363/5772/files/Scandinavian_Interior_Design_600x600.jpg?v=1747381870" alt="Scandi">
+                    <div class="slide-label">Scandi</div>
+                </div>
+
+                <div class="slide">
+                    <img src="https://www.juliettesinteriors.co.uk/wp-content/uploads/2024/12/luxury-interior-design-guides-hero-image-hgh-res-juliettes-interiors-540x412.jpg" alt="Luxury">
+                    <div class="slide-label">Luxurious</div>
+                </div>
+
+            </div>
+
+            <button class="nav-btn nav-right" id="btnRight"><i class="fas fa-chevron-right"></i></button>
+
+            <!-- 10 Pagination Dots -->
+            <div class="pagination">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+
+        <div class="curve-bottom"></div>
+    </section>
+
+    <!-- Footer Call to Action -->
+    <footer class="footer-cta">
+        <p>We design private residences and commercial spaces from a blank<br>page. No templates. No repeated floor plans. No shortcuts.</p>
+    </footer>
+
+</div> <!-- End of page-wrapper -->
+
+    <!-- Carousel Logic -->
+    <script>
+        const track = document.getElementById('track');
+        const btnLeft = document.getElementById('btnLeft');
+        const btnRight = document.getElementById('btnRight');
+        const dots = document.querySelectorAll('.dot');
+
+        // Function to update the active dot based on scroll position
+        const updateDots = () => {
+            const scrollPercentage = track.scrollLeft / (track.scrollWidth - track.clientWidth);
+            const activeIndex = Math.round(scrollPercentage * (dots.length - 1));
+            
+            dots.forEach((dot, index) => {
+                if (index === activeIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        };
+
+        // Scroll logic for arrows
+        btnLeft.addEventListener('click', () => {
+            track.scrollBy({ left: -365, behavior: 'smooth' });
+        });
+
+        btnRight.addEventListener('click', () => {
+            track.scrollBy({ left: 365, behavior: 'smooth' });
+        });
+
+        // Listen for user scrolling
+        track.addEventListener('scroll', updateDots);
+
+        // --- NEW: Center the carousel on page load ---
+        window.addEventListener('load', () => {
+            // Adding a tiny timeout ensures the browser has calculated the layout widths properly
+            setTimeout(() => {
+                const maxScroll = track.scrollWidth - track.clientWidth;
+                // Instantly scroll to the middle
+                track.scrollLeft = maxScroll / 2;
+                updateDots();
+            }, 50);
+        });
+    </script>
+</body>
+</html>
