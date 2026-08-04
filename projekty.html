@@ -77,8 +77,11 @@
         .nav-pill a.active, .nav-pill a:hover { color: #000; font-weight: 500; }
         .social-icons a { color: #1a1a1a; text-decoration: none; }
 
-        .page-header { text-align: center; margin-bottom: 4rem; width: 100%; }
-        .page-header h1 { font-size: 6.5rem; font-weight: 900; letter-spacing: -3px; line-height: 0.9; color: #1a1a1a; margin-bottom: 1.5rem; }
+        .page-header { text-align: center; margin-bottom: 5rem; width: 100%; }
+        
+        /* Zvětšená mezera pod nadpisem pomocí margin-bottom */
+        .page-header h1 { font-size: 6.5rem; font-weight: 900; letter-spacing: -3px; line-height: 0.9; color: #1a1a1a; margin-bottom: 3.5rem; }
+        
         .page-header p.subtitle-desc { font-size: 1.1rem; color: #666; line-height: 1.5; max-width: 700px; margin: 0 auto; }
 
         /* --- COLLAPSIBLE ACCORDION STYLING --- */
@@ -102,6 +105,7 @@
         .accordion-inner p { font-size: 1.05rem; color: #555; line-height: 1.6; max-width: 800px; }
         .project-size { display: block; margin-top: 1rem; font-weight: 600; color: #1a1a1a; }
         
+        /* Interaktivní horizontální galerie (carousel) */
         .project-gallery { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; -ms-overflow-style: none; scrollbar-width: none; }
         .project-gallery::-webkit-scrollbar { display: none; }
         .project-gallery img { height: 250px; width: auto; border-radius: 12px; object-fit: cover; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
@@ -116,7 +120,7 @@
             .header-left { width: 100%; justify-content: space-between; margin-bottom: 1rem; }
             .nav-pill { display: none; }
             .social-icons { justify-content: center; margin-top: 1rem; }
-            .page-header h1 { font-size: 4rem; letter-spacing: -2px; }
+            .page-header h1 { font-size: 4rem; letter-spacing: -2px; margin-bottom: 2rem; }
             .accordion-header { font-size: 1.4rem; padding: 1.5rem 0; }
             .project-gallery img { height: 180px; }
         }
@@ -161,6 +165,55 @@
             <div class="accordion-content"><div class="accordion-inner">
                 <p>Propojení japonské estetiky a skandinávské útulnosti. Světlé dřevo, tlumené barvy a maximální důraz na čistotu prostoru. Realizace bytu v historickém centru Prahy.<span class="project-size">Rozloha: 85 m²</span></p>
                 <div class="project-gallery"><img src="https://cdn.lampenlicht.nl/m/catalog/product/1/0/4079_109454_0.jpg?profile=product_page_image_large" alt="Japandi"></div>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Byt v Praze | Art Deco</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Původní mosazné kování, geometrické tapety a luxusní materiály propůjčují tomuto bytu na Vinohradech nekompromisní eleganci zlatých dvacátých let.<span class="project-size">Rozloha: 95 m²</span></p>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Byt v Praze | Scandi</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Světlé dubové podlahy, bílé stěny a útulné textilie vytvořily perfektní zázemí pro mladou rodinu v Holešovicích. Důraz na přirozené světlo a plynulý prostor.<span class="project-size">Rozloha: 68 m²</span></p>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Byt v Praze | Mid-Century Modern</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Autentické retro kousky, výrazné teakové dřevo a hořčicově žluté akcenty. Proměna bytu v klasické dejvické zástavbě do podoby chic 60. let.<span class="project-size">Rozloha: 82 m²</span></p>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Byt v Kolíně | Industrial</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Odhalené cihlové stěny a přiznané ocelové nosníky. Industriální design v zrekonstruovaném bytě blízko centra Kolína, doplněný koženým nábytkem.<span class="project-size">Rozloha: 75 m²</span></p>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Rodinný dům v Kolíně | Moderní venkov</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Propojení tradičních venkovských prvků s velkoformátovým prosklením a moderními technologiemi. Vzdušný interiér zaměřený na propojení se zahradou.<span class="project-size">Rozloha: 145 m²</span></p>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Byt v Karlových Varech | Belle Époque</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Renovace s naprostým ohledem na lázeňskou historii budovy. Obnovené původní štuky, francouzská okna a masivní křišťálové lustry dominují obytnému prostoru.<span class="project-size">Rozloha: 110 m²</span></p>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Byt v Českých Budějovicích | Japandi</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Tlumené zemité tóny, jemná papírová svítidla a na míru vyrobený nízký nábytek tvoří z bytu v Českých Budějovicích absolutní svatyni klidu.<span class="project-size">Rozloha: 72 m²</span></p>
             </div></div>
         </div>
 
