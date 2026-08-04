@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Služby - Studio Plynth</title>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        html, body {
+            background-image: url('https://plus.unsplash.com/premium_photo-1671410372744-989627ea0033?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG1hcmJsZSUyMHdhbGxwYXBlcnxlbnwwfHwwfHx8MA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #e0e5e9; 
+            color: #1a1a1a;
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 3rem 2rem; 
+        }
+
+        .page-wrapper {
+            background-color: #f8f7f4; 
+            width: 100%;
+            max-width: 1200px;
+            border-radius: 24px; 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); 
+            overflow: hidden; 
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .top-section {
+            width: 100%;
+            padding: 3rem 2rem 0 2rem; 
+            margin: 0 auto;
+            position: relative;
+            z-index: 20; 
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5rem;
+            width: 100%;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex: 1;
+        }
+
+        .header-center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+            font-size: 1.2rem;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .lang-switcher {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-btn {
+            background: #fff;
+            border: 1px solid #d1d1d1;
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #1a1a1a;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover { background: #f0f0f0; }
+
+        .lang-dropdown {
+            display: none; 
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background: #fff;
+            border: 1px solid #d1d1d1;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            min-width: 140px;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .lang-switcher:hover .lang-dropdown { display: block; }
+
+        .lang-dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.2rem;
+            text-decoration: none;
+            color: #1a1a1a;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .lang-dropdown a:hover { background: #f5f5f5; }
+
+        .logo {
+            font-family: serif;
+            font-size: 2.2rem;
+            font-weight: bold;
+            letter-spacing: -1px;
+            text-decoration: none;
+            color: #1a1a1a;
+        }
+
+        .nav-pill {
+            display: flex;
+            gap: 1.5rem;
+            border: 1px solid #d1d1d1;
+            border-radius: 50px;
+            padding: 0.8rem 2.5rem;
+            background: #f8f7f4;
+        }
+
+        .nav-pill a {
+            text-decoration: none;
+            color: #444;
+            font-size: 0.95rem;
+        }
+
+        .nav-pill a.active, .nav-pill a:hover {
+            color: #000;
+            font-weight: 500;
+        }
+
+        .social-icons a {
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+
+        .services-wrapper {
+            padding: 0 4rem 6rem 4rem;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .services-header h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .services-header p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 20px;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            font-size: 1.05rem;
+            flex-grow: 1; /* Pushes the price badge to the bottom */
+        }
+
+        .service-card .price {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background: #f4f3ef;
+            border: 1px solid #e0dfdb;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #1a1a1a;
+        }
+
+        .footer-cta {
+            text-align: center;
+            padding: 3rem 2rem 5rem 2rem;
+            width: 100%;
+            background-color: #f8f7f4;
+            border-top: 1px solid #eaeaea;
+            margin-top: auto;
+        }
+
+        .footer-cta p {
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            html, body { padding: 1rem 0.5rem; }
+            .page-wrapper { border-radius: 16px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); }
+            .header { flex-direction: column; align-items: stretch; margin-bottom: 2rem; }
+            .header-left { width: 100%; justify-content: space-between; margin-bottom: 1rem; }
+            .nav-pill { display: none; }
+            .social-icons { justify-content: center; margin-top: 1rem; }
+            
+            .services-wrapper { padding: 0 1.5rem 4rem 1.5rem; }
+            .services-header h1 { font-size: 3rem; }
+            .services-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .service-card { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <div class="top-section">
+        <header class="header">
+            
+            <div class="header-left">
+                <div class="lang-switcher">
+                    <button class="lang-btn"><span id="active-flag">🇨🇿</span> <i class="fas fa-chevron-down"></i></button>
+                    <div class="lang-dropdown">
+                        <a href="#" onclick="changeLang('cs', '🇨🇿', event)">🇨🇿 CZ</a>
+                        <a href="#" onclick="changeLang('en', '🇬🇧', event)">🇬🇧 EN</a>
+                        <a href="#" onclick="changeLang('uk', '🇺🇦', event)">🇺🇦 UKR</a>
+                        <a href="#" onclick="changeLang('pl', '🇵🇱', event)">🇵🇱 PL</a>
+                        <a href="#" onclick="changeLang('fr', '🇫🇷', event)">🇫🇷 FR</a>
+                        <a href="#" onclick="changeLang('es', '🇪🇸', event)">🇪🇸 ES</a>
+                    </div>
+                </div>
+                <a href="index.html" class="logo">Plynth</a>
+            </div>
+
+            <div class="header-center">
+                <nav class="nav-pill">
+                    <a href="index.html" data-i18n="nav_home">Domů</a>
+                    <a href="services.html" class="active" data-i18n="nav_services">Služby</a>
+                    <a href="#" data-i18n="nav_projects">Projekty</a>
+                    <a href="#" data-i18n="nav_contact">Kontakt</a>
+                </nav>
+            </div>
+
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </header>
+    </div>
+
+    <main class="services-wrapper">
+        <div class="services-header">
+            <h1 data-i18n="serv_hero_title">Naše služby</h1>
+            <p data-i18n="serv_hero_sub">Od prvního náčrtu až po předání klíčů.</p>
+        </div>
+
+        <div class="services-grid">
+            
+            <!-- Service 1 -->
+            <div class="service-card">
+                <i class="fas fa-pen-ruler service-icon"></i>
+                <h3 data-i18n="serv_1_title">Architektonická studie</h3>
+                <p data-i18n="serv_1_desc">Kompletní návrh domu včetně dispozičního řešení, 3D vizualizací a osazení na pozemek. Vytváříme domovy na míru vašemu životnímu stylu.</p>
+                <span class="price" data-i18n="serv_1_price">Od 80 000 Kč</span>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="service-card">
+                <i class="fas fa-couch service-icon"></i>
+                <h3 data-i18n="serv_2_title">Návrh interiéru</h3>
+                <p data-i18n="serv_2_desc">Detailní řešení vnitřních prostor do posledního detailu. Zajišťujeme výběr prémiových materiálů, designového nábytku a osvětlení.</p>
+                <span class="price" data-i18n="serv_2_price">Od 45 000 Kč / místnost</span>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="service-card">
+                <i class="fas fa-hammer service-icon"></i>
+                <h3 data-i18n="serv_3_title">Realizace na klíč</h3>
+                <p data-i18n="serv_3_desc">Převezmeme veškeré starosti se stavbou. Zajišťujeme koordinaci prověřených dodavatelů, přísný stavební dozor a hlídání rozpočtu.</p>
+                <span class="price" data-i18n="serv_3_price">Individuální nacenění</span>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="service-card">
+                <i class="fas fa-comments service-icon"></i>
+                <h3 data-i18n="serv_4_title">Konzultace</h3>
+                <p data-i18n="serv_4_desc">Odborné poradenství při nákupu nemovitosti, výběru materiálů nebo optimalizaci stávajících návrhů a půdorysů.</p>
+                <span class="price" data-i18n="serv_4_price">2 500 Kč / hodina</span>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer-cta">
+        <p data-i18n="footer_text">Navrhujeme soukromé rezidence a komerční prostory od čistého stolu.<br>Žádné šablony. Žádné opakované půdorysy. Žádné zkratky.</p>
+    </footer>
+
+</div> 
+
+    <script>
+        const translations = {
+            cs: {
+                nav_home: "Domů", nav_services: "Služby", nav_projects: "Projekty", nav_contact: "Kontakt",
+                serv_hero_title: "Naše služby",
+                serv_hero_sub: "Od prvního náčrtu až po předání klíčů.",
+                serv_1_title: "Architektonická studie",
+                serv_1_desc: "Kompletní návrh domu včetně dispozičního řešení, 3D vizualizací a osazení na pozemek. Vytváříme domovy na míru vašemu životnímu stylu.",
+                serv_1_price: "Od 80 000 Kč",
+                serv_2_title: "Návrh interiéru",
+                serv_2_desc: "Detailní řešení vnitřních prostor do posledního detailu. Zajišťujeme výběr prémiových materiálů, designového nábytku a osvětlení.",
+                serv_2_price: "Od 45 000 Kč / místnost",
+                serv_3_title: "Realizace na klíč",
+                serv_3_desc: "Převezmeme veškeré starosti se stavbou. Zajišťujeme koordinaci prověřených dodavatelů, přísný stavební dozor a hlídání rozpočtu.",
+                serv_3_price: "Individuální nacenění",
+                serv_4_title: "Konzultace",
+                serv_4_desc: "Odborné poradenství při nákupu nemovitosti, výběru materiálů nebo optimalizaci stávajících návrhů a půdorysů.",
+                serv_4_price: "2 500 Kč / hodina",
+                footer_text: "Navrhujeme soukromé rezidence a komerční prostory od čistého stolu.<br>Žádné šablony. Žádné opakované půdorysy. Žádné zkratky."
+            },
+            en: {
+                nav_home: "Home", nav_services: "Services", nav_projects: "Projects", nav_contact: "Contact",
+                serv_hero_title: "Our Services",
+                serv_hero_sub: "From the first sketch to handing over the keys.",
+                serv_1_title: "Architectural Study",
+                serv_1_desc: "Complete house design including layout, 3D visualizations, and site placement. We create homes tailored to your lifestyle.",
+                serv_1_price: "From 80,000 CZK",
+                serv_2_title: "Interior Design",
+                serv_2_desc: "Detailed interior solutions down to the last detail. We manage the selection of premium materials, designer furniture, and lighting.",
+                serv_2_price: "From 45,000 CZK / room",
+                serv_3_title: "Turnkey Execution",
+                serv_3_desc: "We take over all the hassle of construction. We ensure coordination of verified suppliers, strict construction supervision, and budget control.",
+                serv_3_price: "Individual pricing",
+                serv_4_title: "Consultation",
+                serv_4_desc: "Expert advice on purchasing property, selecting materials, or optimizing existing designs and floor plans.",
+                serv_4_price: "2,500 CZK / hour",
+                footer_text: "We design private residences and commercial spaces from a blank page.<br>No templates. No repeated floor plans. No shortcuts."
+            },
+            uk: {
+                nav_home: "Головна", nav_services: "Послуги", nav_projects: "Проєкти", nav_contact: "Контакти",
+                serv_hero_title: "Наші послуги",
+                serv_hero_sub: "Від першого ескізу до передачі ключів.",
+                serv_1_title: "Архітектурний проєкт",
+                serv_1_desc: "Комплексне проектування будинку, включаючи планування, 3D візуалізацію та розміщення на ділянці. Ми створюємо домівки відповідно до вашого стилю життя.",
+                serv_1_price: "Від 80 000 крон",
+                serv_2_title: "Дизайн інтер'єру",
+                serv_2_desc: "Детальні інтер'єрні рішення до дрібниць. Забезпечуємо підбір матеріалів преміум-класу, дизайнерських меблів та освітлення.",
+                serv_2_price: "Від 45 000 крон / кімната",
+                serv_3_title: "Реалізація під ключ",
+                serv_3_desc: "Беремо на себе всі турботи, пов'язані з будівництвом. Координуємо перевірених підрядників, здійснюємо суворий нагляд та контролюємо бюджет.",
+                serv_3_price: "Індивідуальний розрахунок",
+                serv_4_title: "Консультація",
+                serv_4_desc: "Експертні поради щодо купівлі нерухомості, вибору матеріалів або оптимізації існуючих проєктів та планувань.",
+                serv_4_price: "2 500 крон / година",
+                footer_text: "Ми проектуємо приватні резиденції та комерційні приміщення з чистого аркуша.<br>Ніяких шаблонів. Ніколи не повторюємо планування. Ніяких компромісів."
+            },
+            pl: {
+                nav_home: "Strona główna", nav_services: "Usługi", nav_projects: "Projekty", nav_contact: "Kontakt",
+                serv_hero_title: "Nasze usługi",
+                serv_hero_sub: "Od pierwszego szkicu aż po przekazanie kluczy.",
+                serv_1_title: "Projekt architektoniczny",
+                serv_1_desc: "Kompletny projekt domu obejmujący układ, wizualizacje 3D i rozmieszczenie na działce. Tworzymy domy dopasowane do Twojego stylu życia.",
+                serv_1_price: "Od 80 000 CZK",
+                serv_2_title: "Projekt wnętrza",
+                serv_2_desc: "Szczegółowe rozwiązania wnętrz w każdym detalu. Zapewniamy dobór materiałów premium, designerskich mebli i oświetlenia.",
+                serv_2_price: "Od 45 000 CZK / pokój",
+                serv_3_title: "Realizacja pod klucz",
+                serv_3_desc: "Przejmujemy wszystkie zmartwienia związane z budową. Zapewniamy koordynację zweryfikowanych dostawców, ścisły nadzór i kontrolę budżetu.",
+                serv_3_price: "Indywidualna wycena",
+                serv_4_title: "Konsultacje",
+                serv_4_desc: "Fachowe doradztwo przy zakupie nieruchomości, doborze materiałów lub optymalizacji istniejących projektów i planów.",
+                serv_4_price: "2 500 CZK / godzina",
+                footer_text: "Projektujemy prywatne rezydencje i przestrzenie komercyjne od zera.<br>Żadnych szablonów. Żadnych powtarzalnych planów. Żadnych dróg na skróty."
+            },
+            fr: {
+                nav_home: "Accueil", nav_services: "Services", nav_projects: "Projets", nav_contact: "Contact",
+                serv_hero_title: "Nos services",
+                serv_hero_sub: "De la première esquisse à la remise des clés.",
+                serv_1_title: "Étude architecturale",
+                serv_1_desc: "Conception complète de la maison comprenant l'aménagement, les visualisations 3D et le placement sur le site. Nous créons des maisons adaptées à votre mode de vie.",
+                serv_1_price: "À partir de 80 000 CZK",
+                serv_2_title: "Design d'intérieur",
+                serv_2_desc: "Des solutions intérieures détaillées. Nous gérons la sélection de matériaux haut de gamme, de meubles de créateurs et d'éclairage.",
+                serv_2_price: "À partir de 45 000 CZK / pièce",
+                serv_3_title: "Réalisation clé en main",
+                serv_3_desc: "Nous prenons en charge tous les tracas de la construction. Nous assurons la coordination des fournisseurs, une supervision stricte et le contrôle du budget.",
+                serv_3_price: "Tarification individuelle",
+                serv_4_title: "Consultation",
+                serv_4_desc: "Conseils d'experts sur l'achat d'une propriété, la sélection de matériaux ou l'optimisation de plans existants.",
+                serv_4_price: "2 500 CZK / heure",
+                footer_text: "Nous concevons des résidences privées et des espaces commerciaux à partir d'une page blanche.<br>Pas de modèles. Pas de plans répétitifs. Pas de raccourcis."
+            },
+            es: {
+                nav_home: "Inicio", nav_services: "Servicios", nav_projects: "Proyectos", nav_contact: "Contacto",
+                serv_hero_title: "Nuestros servicios",
+                serv_hero_sub: "Desde el primer boceto hasta la entrega de las llaves.",
+                serv_1_title: "Estudio Arquitectónico",
+                serv_1_desc: "Diseño completo de la casa incluyendo distribución, visualizaciones 3D y ubicación en el terreno. Creamos hogares adaptados a tu estilo de vida.",
+                serv_1_price: "Desde 80,000 CZK",
+                serv_2_title: "Diseño de Interiores",
+                serv_2_desc: "Soluciones interiores detalladas. Gestionamos la selección de materiales premium, muebles de diseño e iluminación.",
+                serv_2_price: "Desde 45,000 CZK / habitación",
+                serv_3_title: "Ejecución llave en mano",
+                serv_3_desc: "Nos hacemos cargo de todas las molestias de la construcción. Aseguramos la coordinación de proveedores, supervisión estricta y control de presupuesto.",
+                serv_3_price: "Precio individual",
+                serv_4_title: "Consultoría",
+                serv_4_desc: "Asesoramiento experto en la compra de propiedades, selección de materiales u optimización de diseños y planos existentes.",
+                serv_4_price: "2,500 CZK / hora",
+                footer_text: "Diseñamos residencias privadas y espacios comerciales desde cero.<br>Sin plantillas. Sin planos repetidos. Sin atajos."
+            }
+        };
+
+        function changeLang(lang, flagEmoji, event) {
+            if(event) event.preventDefault(); 
+            document.getElementById('active-flag').innerText = flagEmoji;
+            const dict = translations[lang];
+            
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if(dict[key]) {
+                    element.innerHTML = dict[key]; 
+                }
+            });
+        }
+    </script>
+</body>
+</html>
