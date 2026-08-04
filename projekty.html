@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studio Plynth</title>
+    <title>Studio Plynth - Projekty</title>
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -15,7 +15,6 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        /* --- MOCKUP PRESENTATION BACKGROUND --- */
         html, body {
             background-image: url('https://muralsyourway.vtexassets.com/arquivos/ids/241255/Dark-Gray-Concrete-Wallpaper-Mural.jpg?v=638165403901970000');
             background-size: cover;
@@ -59,591 +58,281 @@
             width: 100%;
         }
 
-        /* Flex: 1 ensures left and right sections take equal space, forcing the center nav to be perfectly in the middle */
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            flex: 1;
-        }
-
-        .header-center {
-            display: flex;
-            justify-content: center;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 1.2rem;
-            font-size: 1.2rem;
-            flex: 1;
-            justify-content: flex-end;
-        }
-
-        .lang-switcher {
-            position: relative;
-            display: inline-block;
-        }
-
+        .header-left { display: flex; align-items: center; gap: 1.5rem; flex: 1; }
+        .header-center { display: flex; justify-content: center; }
+        .social-icons { display: flex; gap: 1.2rem; font-size: 1.2rem; flex: 1; justify-content: flex-end; }
+        .lang-switcher { position: relative; display: inline-block; }
         .lang-btn {
-            background: #fff;
-            border: 1px solid #d1d1d1;
-            border-radius: 50px;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #1a1a1a;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: all 0.2s;
+            background: #fff; border: 1px solid #d1d1d1; border-radius: 50px;
+            padding: 0.5rem 1rem; cursor: pointer; font-size: 1rem;
+            display: flex; align-items: center; gap: 0.5rem; color: #1a1a1a;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: all 0.2s;
         }
-
         .lang-btn:hover { background: #f0f0f0; }
 
-        .lang-dropdown {
-            display: none; 
-            position: absolute;
-            top: 110%;
-            left: 0;
-            background: #fff;
-            border: 1px solid #d1d1d1;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            min-width: 140px;
-            z-index: 100;
-            overflow: hidden;
-        }
-
-        .lang-switcher:hover .lang-dropdown { display: block; }
-
-        .lang-dropdown a {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.2rem;
-            text-decoration: none;
-            color: #1a1a1a;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: background 0.2s;
-        }
-
-        .lang-dropdown a:hover { background: #f5f5f5; }
-
-        .logo {
-            font-family: serif;
-            font-size: 2.2rem;
-            font-weight: bold;
-            letter-spacing: -1px;
-        }
-
-        .nav-pill {
-            display: flex;
-            gap: 1.5rem;
-            border: 1px solid #d1d1d1;
-            border-radius: 50px;
-            padding: 0.8rem 2.5rem;
-            background: #f8f7f4;
-        }
-
-        .nav-pill a {
-            text-decoration: none;
-            color: #444;
-            font-size: 0.95rem;
-        }
-
-        .nav-pill a.active, .nav-pill a:hover {
-            color: #000;
-            font-weight: 500;
-        }
-
-        .social-icons a {
-            color: #1a1a1a;
-            text-decoration: none;
-        }
-
-        .hero {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .hero h1 {
-            line-height: 0.85; /* Malá mezera mezi Studio a Plynth */
-            font-weight: 800;
-            letter-spacing: -2px;
-            margin-bottom: 1.5rem;
-            display: flex;
-            flex-direction: column;
-        }
+        .logo { font-family: serif; font-size: 2.2rem; font-weight: bold; letter-spacing: -1px; text-decoration: none; color: #1a1a1a; }
         
-        .hero h1 .word-studio {
-             font-size: 5.7rem; /* O něco větší než Plynth (přidáno pár px) */
-        }
+        .nav-pill { display: flex; gap: 1.5rem; border: 1px solid #d1d1d1; border-radius: 50px; padding: 0.8rem 2.5rem; background: #f8f7f4; }
+        .nav-pill a { text-decoration: none; color: #444; font-size: 0.95rem; }
+        .nav-pill a.active, .nav-pill a:hover { color: #000; font-weight: 500; }
+        .social-icons a { color: #1a1a1a; text-decoration: none; }
+
+        .page-header { text-align: center; margin-bottom: 4rem; width: 100%; }
+        .page-header h1 { font-size: 6.5rem; font-weight: 900; letter-spacing: -3px; line-height: 0.9; color: #1a1a1a; margin-bottom: 1.5rem; }
+        .page-header p.subtitle-desc { font-size: 1.1rem; color: #666; line-height: 1.5; max-width: 700px; margin: 0 auto; }
+
+        /* --- COLLAPSIBLE ACCORDION STYLING --- */
+        .projects-container { width: 100%; max-width: 950px; margin: 0 auto 6rem auto; padding: 0 2rem; }
         
-        .hero h1 .word-plynth {
-             font-size: 5.5rem; /* Základní velikost */
+        .accordion-item { border-bottom: 2px solid #e0e0e0; }
+        .accordion-item:first-child { border-top: 2px solid #e0e0e0; }
+        
+        .accordion-header {
+            width: 100%; background: transparent; border: none; padding: 2.5rem 0;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 2rem; font-weight: 800; letter-spacing: -1.2px; color: #1a1a1a;
+            cursor: pointer; text-align: left; transition: color 0.3s;
         }
+        .accordion-header:hover { color: #666; }
+        .accordion-header .icon { font-size: 1.5rem; font-weight: 400; transition: transform 0.4s ease; }
+        .accordion-item.active .accordion-header .icon { transform: rotate(45deg); }
+        
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; }
+        .accordion-inner { padding-bottom: 3rem; display: flex; flex-direction: column; gap: 2rem; }
+        .accordion-inner p { font-size: 1.05rem; color: #555; line-height: 1.6; max-width: 800px; }
+        .project-size { display: block; margin-top: 1rem; font-weight: 600; color: #1a1a1a; }
+        
+        .project-gallery { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; -ms-overflow-style: none; scrollbar-width: none; }
+        .project-gallery::-webkit-scrollbar { display: none; }
+        .project-gallery img { height: 250px; width: auto; border-radius: 12px; object-fit: cover; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
 
-        .hero p.subtitle-main {
-            font-size: 1.3rem;
-            color: #444;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero p.subtitle-desc {
-            font-size: 1.05rem;
-            color: #666;
-            line-height: 1.5;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap; 
-            gap: 1rem;
-            margin-top: 2.5rem;
-            margin-bottom: 5rem;
-        }
-
-        .btn {
-            padding: 0.9rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 500;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .btn-dark {
-            background-color: #1f1e1c;
-            color: #fff;
-            border: 1px solid #1f1e1c;
-        }
-
-        .btn-light {
-            background-color: transparent;
-            color: #1f1e1c;
-            border: 1px solid #d1d1d1;
-        }
-
-        .carousel-heading {
-            font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 1rem;
-            color: #1a1a1a;
-        }
-
-        .gallery-section {
-            position: relative;
-            width: 100%;
-            height: 550px; 
-            margin: 0 0 2rem 0; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .curve-top, .curve-bottom {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150%; 
-            height: 200px; 
-            background-color: #f8f7f4;
-            border-radius: 50%;
-            z-index: 5;
-            pointer-events: none; 
-        }
-
-        .curve-top { top: -150px; }
-        .curve-bottom { bottom: -150px; }
-
-        .carousel-container {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            z-index: 1; 
-        }
-
-        .carousel-track {
-            display: flex;
-            gap: 15px;
-            width: 100%;
-            height: 100%;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            scroll-snap-type: x mandatory; 
-            padding: 0 calc(50% - 175px); 
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        .carousel-track::-webkit-scrollbar { display: none; }
-
-        .slide {
-            flex: 0 0 350px; 
-            height: 100%;
-            scroll-snap-align: center; 
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .slide-label {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 4rem 1.5rem 3.5rem; 
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            color: #fff;
-            font-size: 1.2rem;
-            font-weight: 500;
-            text-align: center;
-            pointer-events: none;
-        }
-
-        .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(0,0,0,0.1);
-            color: #1a1a1a;
-            width: 50px;
-            height: 50px;
-            border-radius: 0;
-            cursor: pointer;
-            z-index: 10;
-            font-size: 1.2rem;
-            backdrop-filter: blur(5px);
-            transition: background 0.2s;
-        }
-
-        .nav-btn:hover { background: rgba(255, 255, 255, 1); }
-        .nav-left { left: 1rem; }
-        .nav-right { right: 1rem; }
-
-        .pagination {
-            position: absolute;
-            bottom: 35px; 
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 8px;
-            z-index: 10;
-        }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: #c4c4c4;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .dot.active { background-color: #4a4a4a; }
-
-        .footer-cta {
-            text-align: center;
-            padding: 3rem 2rem 5rem 2rem;
-            width: 100%;
-            background-color: #f8f7f4;
-            position: relative;
-            z-index: 10;
-        }
-
-        .footer-cta p {
-            font-size: 1.1rem;
-            color: #1a1a1a;
-            margin-bottom: 2rem;
-            line-height: 1.5;
-        }
+        .footer-cta { text-align: center; padding: 3rem 2rem 5rem 2rem; width: 100%; background-color: #f8f7f4; position: relative; z-index: 10; }
+        .footer-cta p { font-size: 1.1rem; color: #1a1a1a; margin-bottom: 2rem; line-height: 1.5; }
 
         @media (max-width: 768px) {
             html, body { padding: 1rem 0.5rem; }
             .page-wrapper { border-radius: 16px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); }
-            
-            /* Responsive sizes for Studio Plynth */
-            .hero h1 .word-studio { font-size: 3.7rem; }
-            .hero h1 .word-plynth { font-size: 3.5rem; }
-            
             .header { flex-direction: column; align-items: stretch; margin-bottom: 2rem; }
             .header-left { width: 100%; justify-content: space-between; margin-bottom: 1rem; }
             .nav-pill { display: none; }
             .social-icons { justify-content: center; margin-top: 1rem; }
-            
-            .hero-buttons { gap: 0.8rem; margin-bottom: 4rem; }
-            .btn { padding: 0.8rem 1.5rem; font-size: 0.95rem; }
-            .carousel-heading { font-size: 2rem; }
-            .slide { flex: 0 0 280px; }
-            .carousel-track { padding: 0 calc(50% - 140px); }
-            .nav-btn { display: none; } 
+            .page-header h1 { font-size: 4rem; letter-spacing: -2px; }
+            .accordion-header { font-size: 1.4rem; padding: 1.5rem 0; }
+            .project-gallery img { height: 180px; }
         }
     </style>
 </head>
 <body>
 
 <div class="page-wrapper">
-
     <div class="top-section">
         <header class="header">
-            
-            <!-- Logo & Language Switcher -->
             <div class="header-left">
                 <div class="lang-switcher">
                     <button class="lang-btn"><span id="active-flag">🇨🇿</span> <i class="fas fa-chevron-down"></i></button>
-                    <div class="lang-dropdown">
-                        <a href="#" onclick="changeLang('cs', '🇨🇿', event)">🇨🇿 CZ</a>
-                        <a href="#" onclick="changeLang('en', '🇬🇧', event)">🇬🇧 EN</a>
-                        <a href="#" onclick="changeLang('uk', '🇺🇦', event)">🇺🇦 UKR</a>
-                        <a href="#" onclick="changeLang('pl', '🇵🇱', event)">🇵🇱 PL</a>
-                        <a href="#" onclick="changeLang('fr', '🇫🇷', event)">🇫🇷 FR</a>
-                        <a href="#" onclick="changeLang('es', '🇪🇸', event)">🇪🇸 ES</a>
-                    </div>
                 </div>
-                <div class="logo">Plynth</div>
+                <a href="#" class="logo">Plynth</a>
             </div>
-
-            <!-- Main Nav (Centered) -->
             <div class="header-center">
                 <nav class="nav-pill">
-                    <a href="#" class="active" data-i18n="nav_home">Domů</a>
-                    <a href="#" data-i18n="nav_services">Služby</a>
-                    <a href="#" data-i18n="nav_projects">Projekty</a>
-                    <a href="#" data-i18n="nav_contact">Kontakt</a>
+                    <a href="#">Domů</a>
+                    <a href="#">Služby</a>
+                    <a href="#" class="active">Projekty</a>
+                    <a href="#">Kontakt</a>
                 </nav>
             </div>
-
-            <!-- Socials -->
             <div class="social-icons">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </header>
 
-        <main class="hero">
-            <h1>
-                <span class="word-studio">Studio</span>
-                <span class="word-plynth">Plynth</span>
-            </h1>
-            <p class="subtitle-main" data-i18n="hero_sub1">Architektura a interior design</p>
-            <p class="subtitle-desc" data-i18n="hero_sub2">Více než mileniální šeď. Návrhy. Realizace i rekonstrukce na klíč. Po celé ČR, až k Vám domů. Stylové bydlení nemusí stát jmění.</p>
-            
-            <!-- Buttons -->
-            <div class="hero-buttons">
-                <a href="#" class="btn btn-light" data-i18n="btn_pricing">Ceník a služby</a>
-                <a href="#" class="btn btn-light" data-i18n="btn_projects">Projekty a realizace</a>
-                <a href="#" class="btn btn-dark" data-i18n="btn_meeting">Domluvte si schůzku</a>
-            </div>
-
-            <!-- Carousel Heading -->
-            <h2 class="carousel-heading" data-i18n="carousel_heading">Styly a naše projekty</h2>
-        </main>
+        <div class="page-header">
+            <h1>Projekty</h1>
+            <p class="subtitle-desc">Od kompletních návrhů interiérů, přes rekonstrukce s odkazem na historii, až po alternativní off-grid bydlení na klíč.</p>
+        </div>
     </div>
 
-    <section class="gallery-section">
-        <div class="curve-top"></div>
+    <!-- Collapsible Projects List -->
+    <section class="projects-container">
         
-        <div class="carousel-container">
-            <button class="nav-btn nav-left" id="btnLeft"><i class="fas fa-chevron-left"></i></button>
-            
-            <div class="carousel-track" id="track">
-                
-                <div class="slide">
-                    <img src="https://cdn.lampenlicht.nl/m/catalog/product/1/0/4079_109454_0.jpg?profile=product_page_image_large" alt="Japandi">
-                    <div class="slide-label">Japandi</div>
-                </div>
-                
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1593696140826-c58b021acf8b?auto=format&fit=crop&w=600&q=80" alt="Bauhaus">
-                    <div class="slide-label">Bauhaus</div>
-                </div>
-                
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=600&q=80" alt="Parisian Luxury">
-                    <div class="slide-label">Parisian Luxury</div>
-                </div>
-
-                <div class="slide">
-                    <img src="https://cococozy.com/wp-content/uploads/2021/10/Horseshoe-Bay-17-scaled-aspect-ratio-1000-1400-scaled-1.jpeg" alt="Medievalism">
-                    <div class="slide-label">Medievalism</div>
-                </div>
-                
-                <div class="slide">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_gpiEtis9snl5z6tYUMMrLDp_cnsEdpG7PQr6e_8g07wO5YQIvm9OQV8g&s=10" alt="Eco Brutalism">
-                    <div class="slide-label">Eco Brutalism</div>
-                </div>
-                
-                <div class="slide">
-                    <img src="https://blog.canadianloghomes.com/wp-content/uploads/2023/06/japandi-style-interior-design.jpg" alt="Rustic">
-                    <div class="slide-label" data-i18n="style_rustic">Rustikální</div>
-                </div>
-
-                <div class="slide">
-                    <img src="https://www.decorilla.com/online-decorating/wp-content/uploads/2024/02/Luxury-contemporary-interior-design-for-a-condo.jpg" alt="Moderna">
-                    <div class="slide-label">Moderna</div>
-                </div>
-
-                <div class="slide">
-                    <img src="https://images.surferseo.art/7cf9acd3-23fa-4813-b853-acee2caf36b5.jpeg" alt="Industrial">
-                    <div class="slide-label">Industrial</div>
-                </div>
-
-                <div class="slide">
-                    <img src="https://cdn.shopify.com/s/files/1/0691/8363/5772/files/Scandinavian_Interior_Design_600x600.jpg?v=1747381870" alt="Scandi">
-                    <div class="slide-label">Scandi</div>
-                </div>
-
-                <div class="slide">
-                    <img src="https://www.juliettesinteriors.co.uk/wp-content/uploads/2024/12/luxury-interior-design-guides-hero-image-hgh-res-juliettes-interiors-540x412.jpg" alt="Luxury">
-                    <div class="slide-label" data-i18n="style_luxury">Luxusní</div>
-                </div>
-
-            </div>
-
-            <button class="nav-btn nav-right" id="btnRight"><i class="fas fa-chevron-right"></i></button>
-
-            <!-- 10 Pagination Dots -->
-            <div class="pagination">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Byt v Praze | Japandi</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Propojení japonské estetiky a skandinávské útulnosti. Světlé dřevo, tlumené barvy a maximální důraz na čistotu prostoru. Realizace bytu v historickém centru Prahy.<span class="project-size">Rozloha: 85 m²</span></p>
+                <div class="project-gallery"><img src="https://cdn.lampenlicht.nl/m/catalog/product/1/0/4079_109454_0.jpg?profile=product_page_image_large" alt="Japandi"></div>
+            </div></div>
         </div>
 
-        <div class="curve-bottom"></div>
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Rodinný dům v Kutné Hoře | French Chic Luxury</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Honosný interiér plný štuků, křišťálových lustrů a sametových textilií. Atmosféra velkorysého pařížského apartmánu v srdci středních Čech.<span class="project-size">Rozloha: 210 m²</span></p>
+                <div class="project-gallery"><img src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=600&q=80" alt="French Luxury"></div>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Chata v Boskovicích | Mid-Century Modern</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Retro nádech 50. a 60. let s ikonickým solitérním nábytkem. Teplé ořechové dřevo, geometrické vzory a výrazné hořčicové a smaragdové akcenty zasazené do přírody.<span class="project-size">Rozloha: 65 m²</span></p>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Rental pokoj, Brno | Cottage Core</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Romantický a nostalgický prostor určený pro krátkodobé pronájmy. Květinové tapety, vintage nábytek z bleších trhů a hřejivá domácí atmosféra venkova.<span class="project-size">Rozloha: 25 m²</span></p>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Vila, Černošice | Art Deco</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Luxus 20. a 30. let zhmotněný v moderní vile. Geometrické tvary, mosazné detaily, obložení z tmavého dřeva a smaragdový samet, které prostoru dominují.<span class="project-size">Rozloha: 320 m²</span></p>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Loft, Ostrava | Eco Brutalism</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Původní surový beton bývalé průmyslové haly jsme zjemnili vertikálními zahradami a přírodními materiály. Vznikla tak oáza městské džungle s industriální duší.<span class="project-size">Rozloha: 140 m²</span></p>
+                <div class="project-gallery"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_gpiEtis9snl5z6tYUMMrLDp_cnsEdpG7PQr6e_8g07wO5YQIvm9OQV8g&s=10" alt="Eco Brutalism"></div>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Mezonet, Plzeň | Industrial</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Otevřený, dvoupodlažní prostor. Odhalené staré cihly a ocelové konstrukce lakované černou barvou dodávají tomuto mezonetu nefalšovaný tovární charakter.<span class="project-size">Rozloha: 110 m²</span></p>
+                <div class="project-gallery"><img src="https://images.surferseo.art/7cf9acd3-23fa-4813-b853-acee2caf36b5.jpeg" alt="Industrial"></div>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Rezidence, Karlovy Vary | Parisian Luxury</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Vysoké stropy, parkety skládané do stromečku (chevron), mramorové obklady a minimalistický nábytek tvořící dokonalý kontrast k historické a zdobné stavbě.<span class="project-size">Rozloha: 180 m²</span></p>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Chalupa, Šumava | Rustikální</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Tradiční venkovský styl s použitím lokálního dřeva a neopracovaného kamene. Plný respekt k původní architektuře s citlivou integrací moderního komfortu.<span class="project-size">Rozloha: 150 m²</span></p>
+                <div class="project-gallery"><img src="https://blog.canadianloghomes.com/wp-content/uploads/2023/06/japandi-style-interior-design.jpg" alt="Rustic"></div>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Apartmán, Liberec | Scandi</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Čistý, funkční a neuvěřitelně světlý interiér. Kombinace dominantní bílé barvy, jemných šedých doplňků a březového dřeva.<span class="project-size">Rozloha: 75 m²</span></p>
+                <div class="project-gallery"><img src="https://cdn.shopify.com/s/files/1/0691/8363/5772/files/Scandinavian_Interior_Design_600x600.jpg?v=1747381870" alt="Scandi"></div>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Kanceláře, Praha | Bauhaus</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Přísná funkcionalita, kde forma následuje funkci. Primární barvy v detailech, ikonické ohýbané trubkové židle a dokonale čisté, rovné linie.<span class="project-size">Rozloha: 450 m²</span></p>
+                <div class="project-gallery"><img src="https://images.unsplash.com/photo-1593696140826-c58b021acf8b?auto=format&fit=crop&w=600&q=80" alt="Bauhaus"></div>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Penthouse, Bratislava | Moderna</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Čisté plochy, důsledně bezúchytková řešení truhlařiny, spousta skla a oceli. Neotřelý a chladnější luxus s bezkonkurenčním výhledem na město.<span class="project-size">Rozloha: 220 m²</span></p>
+                <div class="project-gallery"><img src="https://www.decorilla.com/online-decorating/wp-content/uploads/2024/02/Luxury-contemporary-interior-design-for-a-condo.jpg" alt="Moderna"></div>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Studio, Olomouc | Minimalismus</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Byt zaměřený na naprostou esenci bydlení. Skryté úložné prostory, žádné zbytečnosti, minimum vizuálního smogu – jen čisté světlo a vzdušný prostor.<span class="project-size">Rozloha: 40 m²</span></p>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Tiny House, Orlické hory | Off-grid Japandi</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Návrh a realizace naprosto nezávislé malé dřevostavby. Při ploše pouhých 20 m² bylo klíčové přesně spočítat roční náklady na palivo, vyřešit soběstačné vytápění nezávislými jednotkami a optimalizovat technické požadavky stavby bez ústupků z Japandi estetiky.<span class="project-size">Rozloha: 20 m²</span></p>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Kavárna, Hradec Králové | Art Deco</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Výrazné tapety s metalickými odlesky, měkké oblé tvary křesílek a dominantní mramorový bar s poctivým mosazným lemováním evokují dobu Velkého Gatsbyho.<span class="project-size">Rozloha: 130 m²</span></p>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Měšťanský dům, Český Krumlov | Medievalism</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Návrh interiéru s naprostým respektem k historii staré budovy. Tmavé masivní dubové dřevo, kované prvky od lokálního kováře a těžké lněné závěsy.<span class="project-size">Rozloha: 190 m²</span></p>
+                <div class="project-gallery"><img src="https://cococozy.com/wp-content/uploads/2021/10/Horseshoe-Bay-17-scaled-aspect-ratio-1000-1400-scaled-1.jpeg" alt="Medievalism"></div>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Byt, Zlín | Funkcionalismus</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Pocta baťovské architektuře a zlínskému odkazu. V interiéru hraje hlavní roli klasická červená cihla, kvalitní marmoleum a strohé chromové detaily.<span class="project-size">Rozloha: 60 m²</span></p>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Glamping stan, Beskydy | Boho Rustic</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Nespoutaný a hravě uvolněný styl pro luxusní kempování. Nechybí macramé, ratanový nábytek, obrovské množství polštářů a pletených vrstvených koberců.<span class="project-size">Rozloha: 35 m²</span></p>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Showroom, Praha | Wabi-Sabi</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Krása nalezená v nedokonalosti. Aplikovali jsme hliněné omítky, surové dřevo s přiznanými prasklinami a tlumenou paletu barev odkazující na pomíjivost přírody.<span class="project-size">Rozloha: 280 m²</span></p>
+            </div></div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header"><span>Vinařství, Mikulov | Středomořský ráz</span><i class="fas fa-plus icon"></i></button>
+            <div class="accordion-content"><div class="accordion-inner">
+                <p>Teplé odstíny terakoty, olivově zelená a masivní opalovaný dub. Navrhli jsme interiér, který naprosto přirozeně navazuje na okolní atmosféru jihomoravských vinic.<span class="project-size">Rozloha: 550 m²</span></p>
+            </div></div>
+        </div>
+
     </section>
 
     <footer class="footer-cta">
-        <p data-i18n="footer_text">Navrhujeme soukromé rezidence a komerční prostory od čistého stolu.<br>Žádné šablony. Žádné opakované půdorysy. Žádné zkratky.</p>
+        <p>Navrhujeme soukromé rezidence a komerční prostory od čistého stolu.<br>Žádné šablony. Žádné opakované půdorysy. Žádné zkratky.</p>
     </footer>
 
-</div> <!-- End of page-wrapper -->
+</div> 
 
     <script>
-        const track = document.getElementById('track');
-        const btnLeft = document.getElementById('btnLeft');
-        const btnRight = document.getElementById('btnRight');
-        const dots = document.querySelectorAll('.dot');
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const content = item.querySelector('.accordion-content');
+                const isActive = item.classList.contains('active');
 
-        const updateDots = () => {
-            const scrollPercentage = track.scrollLeft / (track.scrollWidth - track.clientWidth);
-            const activeIndex = Math.round(scrollPercentage * (dots.length - 1));
-            
-            dots.forEach((dot, index) => {
-                if (index === activeIndex) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
+                // Zavře ostatní
+                document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.accordion-content').style.maxHeight = null;
+                });
+
+                if (!isActive) {
+                    item.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + "px";
                 }
             });
-        };
-
-        btnLeft.addEventListener('click', () => track.scrollBy({ left: -365, behavior: 'smooth' }));
-        btnRight.addEventListener('click', () => track.scrollBy({ left: 365, behavior: 'smooth' }));
-        track.addEventListener('scroll', updateDots);
-
-        // Center the carousel on page load
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const maxScroll = track.scrollWidth - track.clientWidth;
-                track.scrollLeft = maxScroll / 2;
-                updateDots();
-            }, 50);
         });
-
-        const translations = {
-            cs: {
-                nav_home: "Domů", nav_services: "Služby", nav_projects: "Projekty", nav_contact: "Kontakt",
-                hero_sub1: "Architektura a interior design",
-                hero_sub2: "Více než mileniální šeď. Návrhy. Realizace i rekonstrukce na klíč. Po celé ČR, včetně realizace. Stylové bydlení nemusí stát jmění.",
-                btn_pricing: "Ceník a služby", btn_projects: "Projekty a realizace", btn_meeting: "Domluvte si schůzku",
-                carousel_heading: "Styly a naše projekty",
-                style_rustic: "Rustikální", style_luxury: "Luxusní",
-                footer_text: "Navrhujeme soukromé rezidence a komerční prostory od čistého stolu.<br>Žádné šablony. Žádné opakované půdorysy. Žádné zkratky."
-            },
-            en: {
-                nav_home: "Home", nav_services: "Services", nav_projects: "Projects", nav_contact: "Contact",
-                hero_sub1: "Architecture and interior design",
-                hero_sub2: "More than millennial grey. Designs. Turnkey realizations and reconstructions. Across the whole CZ, including realization. Stylish living doesn't have to cost a fortune.",
-                btn_pricing: "Pricing & Services", btn_projects: "Projects & Realizations", btn_meeting: "Book an appointment",
-                carousel_heading: "Styles and our projects",
-                style_rustic: "Rustic", style_luxury: "Luxurious",
-                footer_text: "We design private residences and commercial spaces from a blank page.<br>No templates. No repeated floor plans. No shortcuts."
-            },
-            uk: {
-                nav_home: "Головна", nav_services: "Послуги", nav_projects: "Проєкти", nav_contact: "Контакти",
-                hero_sub1: "Архітектура та дизайн інтер'єру",
-                hero_sub2: "Більше, ніж міленіальний сірий. Дизайн. Реалізація та реконструкція під ключ. По всій Чехії, включаючи реалізацію. Стильне житло не обов'язково коштує цілий статок.",
-                btn_pricing: "Ціни та послуги", btn_projects: "Проєкти та реалізація", btn_meeting: "Записатися на зустріч",
-                carousel_heading: "Стилі та наші проєкти",
-                style_rustic: "Рустик", style_luxury: "Розкішний",
-                footer_text: "Ми проектуємо приватні резиденції та комерційні приміщення з чистого аркуша.<br>Ніяких шаблонів. Ніколи не повторюємо планування. Ніяких компромісів."
-            },
-            pl: {
-                nav_home: "Strona główna", nav_services: "Usługi", nav_projects: "Projekty", nav_contact: "Kontakt",
-                hero_sub1: "Architektura i projektowanie wnętrz",
-                hero_sub2: "Więcej niż milenialna szarość. Projekty. Realizacje i przebudowy pod klucz. Na terenie całych Czech, w tym realizacja. Stylowe mieszkanie nie musi kosztować fortuny.",
-                btn_pricing: "Cennik i usługi", btn_projects: "Projekty i realizacje", btn_meeting: "Umów się spotkanie",
-                carousel_heading: "Style i nasze projekty",
-                style_rustic: "Rustykalny", style_luxury: "Luksusowy",
-                footer_text: "Projektujemy prywatne rezydencje i przestrzenie komercyjne od zera.<br>Żadnych szablonów. Żadnych powtarzalnych planów. Żadnych dróg na skróty."
-            },
-            fr: {
-                nav_home: "Accueil", nav_services: "Services", nav_projects: "Projets", nav_contact: "Contact",
-                hero_sub1: "Architecture et design d'intérieur",
-                hero_sub2: "Plus que du gris millénaire. Conceptions. Réalisations et reconstructions clés en main. Dans toute la République tchèque, réalisation comprise. Une vie élégante ne doit pas coûter une fortune.",
-                btn_pricing: "Tarifs et services", btn_projects: "Projets et réalisations", btn_meeting: "Prendre rendez-vous",
-                carousel_heading: "Styles et nos projets",
-                style_rustic: "Rustique", style_luxury: "Luxueux",
-                footer_text: "Nous concevons des résidences privées et des espaces commerciaux à partir d'une page blanche.<br>Pas de modèles. Pas de plans répétitifs. Pas de raccourcis."
-            },
-            es: {
-                nav_home: "Inicio", nav_services: "Servicios", nav_projects: "Proyectos", nav_contact: "Contacto",
-                hero_sub1: "Arquitectura y diseño de interiores",
-                hero_sub2: "Más que gris millennial. Diseños. Realizaciones y reconstrucciones llave en mano. En toda la República Checa, incluyendo la realización. Vivir con estilo no tiene por qué costar una fortuna.",
-                btn_pricing: "Precios y servicios", btn_projects: "Proyectos y realizaciones", btn_meeting: "Reserva una cita",
-                carousel_heading: "Estilos y nuestros proyectos",
-                style_rustic: "Rústico", style_luxury: "Lujoso",
-                footer_text: "Diseñamos residencias privadas y espacios comerciales desde cero.<br>Sin plantillas. Sin planos repetidos. Sin atajos."
-            }
-        };
-
-        // Function triggered when language is clicked
-        function changeLang(lang, flagEmoji, event) {
-            if(event) event.preventDefault(); 
-            
-            document.getElementById('active-flag').innerText = flagEmoji;
-            const dict = translations[lang];
-            
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if(dict[key]) {
-                    element.innerHTML = dict[key]; 
-                }
-            });
-        }
     </script>
 </body>
 </html>
