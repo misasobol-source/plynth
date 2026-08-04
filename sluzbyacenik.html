@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Služby a Ceník - Studio Plynth</title>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        html, body {
+            background-image: url('https://plus.unsplash.com/premium_photo-1671410372744-989627ea0033?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG1hcmJsZSUyMHdhbGxwYXBlcnxlbnwwfHwwfHx8MA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #e0e5e9; 
+            color: #1a1a1a;
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 3rem 2rem; 
+        }
+
+        .page-wrapper {
+            background-color: #f8f7f4; 
+            width: 100%;
+            max-width: 1200px;
+            border-radius: 24px; 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); 
+            overflow: hidden; 
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .top-section {
+            width: 100%;
+            padding: 3rem 2rem 0 2rem; 
+            margin: 0 auto;
+            position: relative;
+            z-index: 20; 
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4rem;
+            width: 100%;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex: 1;
+        }
+
+        .header-center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+            font-size: 1.2rem;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .lang-switcher {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-btn {
+            background: #fff;
+            border: 1px solid #d1d1d1;
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #1a1a1a;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover { background: #f0f0f0; }
+
+        .lang-dropdown {
+            display: none; 
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background: #fff;
+            border: 1px solid #d1d1d1;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            min-width: 140px;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .lang-switcher:hover .lang-dropdown { display: block; }
+
+        .lang-dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.2rem;
+            text-decoration: none;
+            color: #1a1a1a;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .lang-dropdown a:hover { background: #f5f5f5; }
+
+        .logo {
+            font-family: serif;
+            font-size: 2.2rem;
+            font-weight: bold;
+            letter-spacing: -1px;
+            text-decoration: none;
+            color: #1a1a1a;
+        }
+
+        .nav-pill {
+            display: flex;
+            gap: 1.5rem;
+            border: 1px solid #d1d1d1;
+            border-radius: 50px;
+            padding: 0.8rem 2.5rem;
+            background: #f8f7f4;
+        }
+
+        .nav-pill a {
+            text-decoration: none;
+            color: #444;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-pill a.active, .nav-pill a:hover {
+            color: #000;
+            font-weight: 500;
+        }
+
+        .social-icons a {
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+
+        .services-wrapper {
+            padding: 0 3rem 5rem 3rem;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .services-header h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            font-family: serif;
+        }
+
+        .services-header p {
+            font-size: 1.2rem;
+            color: #444;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 500;
+        }
+
+        /* Bullet points intro box */
+        .intro-bullets {
+            background: #fff;
+            border: 1px solid #e0dfdb;
+            border-radius: 16px;
+            padding: 2.5rem 3rem;
+            margin-bottom: 4rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+
+        .intro-bullets ul {
+            list-style-type: none;
+        }
+
+        .intro-bullets li {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1.8rem;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .intro-bullets li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #1a1a1a;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .intro-bullets li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Pricing Table Styling */
+        .pricing-section {
+            width: 100%;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-title {
+            text-align: center;
+            font-size: 3rem;
+            font-family: serif;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            letter-spacing: -1px;
+            border-bottom: 1px solid #d1d1d1;
+            padding-bottom: 1rem;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e0dfdb;
+        }
+
+        .pricing-table th {
+            background-color: #f2efe9;
+            color: #555;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 1.2rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #e0dfdb;
+        }
+
+        .pricing-table td {
+            padding: 1.8rem 1.5rem;
+            border-bottom: 1px solid #eae5de;
+            vertical-align: top;
+        }
+
+        .pricing-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .pricing-table .col-package {
+            font-weight: 700;
+            font-size: 1.3rem;
+            width: 25%;
+            color: #1a1a1a;
+        }
+
+        .pricing-table .col-desc {
+            font-size: 1rem;
+            color: #444;
+            line-height: 1.6;
+            width: 50%;
+        }
+
+        .pricing-table .col-price {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            text-align: right;
+            width: 25%;
+            white-space: nowrap;
+        }
+
+        .footer-cta {
+            text-align: center;
+            padding: 3rem 2rem 5rem 2rem;
+            width: 100%;
+            background-color: #f8f7f4;
+            border-top: 1px solid #eaeaea;
+            margin-top: auto;
+        }
+
+        .footer-cta p {
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            html, body { padding: 1rem 0.5rem; }
+            .page-wrapper { border-radius: 16px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); }
+            .header { flex-direction: column; align-items: stretch; margin-bottom: 2rem; }
+            .header-left { width: 100%; justify-content: space-between; margin-bottom: 1rem; }
+            .nav-pill { display: none; }
+            .social-icons { justify-content: center; margin-top: 1rem; }
+            
+            .services-wrapper { padding: 0 1rem 3rem 1.0rem; }
+            .services-header h1 { font-size: 2.8rem; }
+            .intro-bullets { padding: 1.5rem; }
+            
+            .pricing-table, .pricing-table tbody, .pricing-table tr, .pricing-table td, .pricing-table th {
+                display: block;
+                width: 100%;
+            }
+            .pricing-table thead { display: none; }
+            .pricing-table td {
+                text-align: left !important;
+                padding: 1rem;
+            }
+            .pricing-table .col-package { font-size: 1.2rem; border-bottom: none; padding-bottom: 0.2rem; }
+            .pricing-table .col-desc { padding-top: 0.2rem; padding-bottom: 0.5rem; }
+            .pricing-table .col-price { font-weight: bold; background: #faf9f6; border-top: 1px dashed #e0dfdb; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <div class="top-section">
+        <header class="header">
+            
+            <div class="header-left">
+                <div class="lang-switcher">
+                    <button class="lang-btn"><span id="active-flag">🇨🇿</span> <i class="fas fa-chevron-down"></i></button>
+                    <div class="lang-dropdown">
+                        <a href="#" onclick="changeLang('cs', '🇨🇿', event)">🇨🇿 CZ</a>
+                        <a href="#" onclick="changeLang('en', '🇬🇧', event)">🇬🇧 EN</a>
+                        <a href="#" onclick="changeLang('uk', '🇺🇦', event)">🇺🇦 UKR</a>
+                        <a href="#" onclick="changeLang('pl', '🇵🇱', event)">🇵🇱 PL</a>
+                        <a href="#" onclick="changeLang('fr', '🇫🇷', event)">🇫🇷 FR</a>
+                        <a href="#" onclick="changeLang('es', '🇪🇸', event)">🇪🇸 ES</a>
+                    </div>
+                </div>
+                <a href="index.html" class="logo">Plynth</a>
+            </div>
+
+            <div class="header-center">
+                <nav class="nav-pill">
+                    <a href="index.html" data-i18n="nav_home">Domů</a>
+                    <a href="sluzby.html" class="active" data-i18n="nav_services">Služby a ceník</a>
+                    <a href="projekty.html" data-i18n="nav_projects">Projekty</a>
+                    <a href="kontakt.html" data-i18n="nav_contact">Kontakt</a>
+                </nav>
+            </div>
+
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </header>
+    </div>
+
+    <main class="services-wrapper">
+        <div class="services-header">
+            <h1 data-i18n="main_title">Plynth Studio</h1>
+            <p data-i18n="main_subtitle">Navrhneme Váš prostor po architektonické i designové stránce a zrealizujeme návrh</p>
+        </div>
+
+        <div class="intro-bullets">
+            <ul>
+                <li data-i18n="bullet_1">Technické nákresy, architektonické návrhy, interior design</li>
+                <li data-i18n="bullet_2">Realizace na klíč – objednáme povrchy, nábytek a zrealizujeme</li>
+                <li data-i18n="bullet_3">Rekonstrukce na klíč – rozšíříme byt o celou místnost, stylizujeme</li>
+                <li data-i18n="bullet_4">Rekonstrukce za kačku – vybereme rekonstrukci ve Vaší cenové kategorii</li>
+                <li data-i18n="bullet_5">Poradíme se stylizací</li>
+                <li data-i18n="bullet_6">Pomůžeme zvýšit hodnotu nemovitosti</li>
+            </ul>
+        </div>
+
+        <section class="pricing-section">
+            <div style="text-align: center;">
+                <h2 class="pricing-title" data-i18n="pricing_heading">Ceník</h2>
+            </div>
+
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th data-i18n="th_package">Balík</th>
+                        <th data-i18n="th_desc">Popis</th>
+                        <th style="text-align: right;" data-i18n="th_price">Cena</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-package" data-i18n="p1_name">Pokoj</td>
+                        <td class="col-desc" data-i18n="p1_desc">2D plán, 3D plán, realistický render ve stylu podle výběru<br>list materiálů, seznam nábytku,<br>možnosti realizace – služby<br>online konzultace</td>
+                        <td class="col-price" data-i18n="p1_price">1 970 Kč</td>
+                    </tr>
+                    <tr>
+                        <td class="col-package" data-i18n="p2_name">Byt či dům</td>
+                        <td class="col-desc" data-i18n="p2_desc">2D plán, 3D plán, realistický render ve stylu podle výběru<br>seznam materiálů, seznam nábytku<br>realizace – služby<br>osobní či online konzultace, popř. osobní měření ve Vašem prostoru po celé ČR</td>
+                        <td class="col-price" data-i18n="p2_price">od 2 490 Kč</td>
+                    </tr>
+                    <tr>
+                        <td class="col-package" data-i18n="p3_name">Realizace na klíč</td>
+                        <td class="col-desc" data-i18n="p3_desc">Zařídíme 2D plány, 3D plány, rendery, koupi všech propriet, instalaci včetně služeb<br>osobní či online konzultace podle Vašeho výběru</td>
+                        <td class="col-price" data-i18n="p3_price">6 900 Kč</td>
+                    </tr>
+                    <tr>
+                        <td class="col-package" data-i18n="p4_name">Rekonstrukce na klíč</td>
+                        <td class="col-desc" data-i18n="p4_desc">Zařídíme 2D plány, 3D plány, rendery, stavební plány, koupi všech propriet a všechny služby<br>osobní či online konzultace podle Vašeho výběru</td>
+                        <td class="col-price" data-i18n="p4_price">11 990 Kč</td>
+                    </tr>
+                    <tr>
+                        <td class="col-package" data-i18n="p5_name">Rekonstrukce V / Realizace V</td>
+                        <td class="col-desc" data-i18n="p5_desc">Plán + realizace - uzpůsobíme služby Vašemu budgetu!</td>
+                        <td class="col-price" data-i18n="p5_price">individuálně</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer class="footer-cta">
+        <p data-i18n="footer_text">Navrhujeme soukromé rezidence a komerční prostory od čistého stolu.<br>Žádné šablony. Žádné opakované půdorysy. Žádné zkratky.</p>
+    </footer>
+
+</div> 
+
+    <script>
+        const translations = {
+            cs: {
+                nav_home: "Domů", nav_services: "Služby a ceník", nav_projects: "Projekty", nav_contact: "Kontakt",
+                main_title: "Plynth Studio",
+                main_subtitle: "Navrhneme Váš prostor po architektonické i designové stránce a zrealizujeme návrh",
+                bullet_1: "Technické nákresy, architektonické návrhy, interior design",
+                bullet_2: "Realizace na klíč – objednáme povrchy, nábytek a zrealizujeme",
+                bullet_3: "Rekonstrukce na klíč – rozšíříme byt o celou místnost, stylizujeme",
+                bullet_4: "Rekonstrukce za kačku – vybereme rekonstrukci ve Vaší cenové kategorii",
+                bullet_5: "Poradíme se stylizací",
+                bullet_6: "Pomůžeme zvýšit hodnotu nemovitosti",
+                pricing_heading: "Ceník",
+                th_package: "Balík", th_desc: "Popis", th_price: "Cena",
+                p1_name: "Pokoj", p1_desc: "2D plán, 3D plán, realistický render ve stylu podle výběru<br>list materiálů, seznam nábytku,<br>možnosti realizace – služby<br>online konzultace", p1_price: "1 970 Kč",
+                p2_name: "Byt či dům", p2_desc: "2D plán, 3D plán, realistický render ve stylu podle výběru<br>seznam materiálů, seznam nábytku<br>realizace – služby<br>osobní či online konzultace, popř. osobní měření ve Vašem prostoru po celé ČR", p2_price: "od 2 490 Kč",
+                p3_name: "Realizace na klíč", p3_desc: "Zařídíme 2D plány, 3D plány, rendery, koupi všech propriet, instalaci včetně služeb<br>osobní či online konzultace podle Vašeho výběru", p3_price: "6 900 Kč",
+                p4_name: "Rekonstrukce na klíč", p4_desc: "Zařídíme 2D plány, 3D plány, rendery, stavební plány, koupi všech propriet a všechny služby<br>osobní či online konzultace podle Vašeho výběru", p4_price: "11 990 Kč",
+                p5_name: "Rekonstrukce V / Realizace V", p5_desc: "Plán + realizace - uzpůsobíme služby Vašemu budgetu!", p5_price: "individuálně",
+                footer_text: "Navrhujeme soukromé rezidence a komerční prostory od čistého stolu.<br>Žádné šablony. Žádné opakované půdorysy. Žádné zkratky."
+            },
+            en: {
+                nav_home: "Home", nav_services: "Services & Pricing", nav_projects: "Projects", nav_contact: "Contact",
+                main_title: "Plynth Studio",
+                main_subtitle: "We will design your space architecturally and aesthetically and execute the design",
+                bullet_1: "Technical drawings, architectural designs, interior design",
+                bullet_2: "Turnkey execution – we order surfaces, furniture, and execute",
+                bullet_3: "Turnkey reconstruction – we expand the apartment by an entire room, styling",
+                bullet_4: "Budget reconstruction – we select a reconstruction in your price category",
+                bullet_5: "We advise on styling",
+                bullet_6: "We help increase property value",
+                pricing_heading: "Pricing",
+                th_package: "Package", th_desc: "Description", th_price: "Price",
+                p1_name: "Room", p1_desc: "2D plan, 3D plan, realistic render in selected style<br>material list, furniture list,<br>realization options – services<br>online consultation", p1_price: "1,970 CZK",
+                p2_name: "Apartment or House", p2_desc: "2D plan, 3D plan, realistic render in selected style<br>material list, furniture list<br>realization – services<br>personal or online consultation, or personal measuring in your space across CZ", p2_price: "from 2,490 CZK",
+                p3_name: "Turnkey Realization", p3_desc: "We arrange 2D plans, 3D plans, renders, purchase of all properties, installation including services<br>personal or online consultation of your choice", p3_price: "6,900 CZK",
+                p4_name: "Turnkey Reconstruction", p4_desc: "We arrange 2D plans, 3D plans, renders, construction plans, purchase of all properties and all services<br>personal or online consultation of your choice", p4_price: "11,990 CZK",
+                p5_name: "Reconstruction V / Realization V", p5_desc: "Plan + realization - we customize services to your budget!", p5_price: "individually",
+                footer_text: "We design private residences and commercial spaces from a blank page.<br>No templates. No repeated floor plans. No shortcuts."
+            },
+            uk: {
+                nav_home: "Головна", nav_services: "Послуги та ціни", nav_projects: "Проєкти", nav_contact: "Контакти",
+                main_title: "Plynth Studio",
+                main_subtitle: "Спроектуємо ваш простір з архітектурної та дизайнерської сторони та втілимо дизайн у життя",
+                bullet_1: "Технічні креслення, архітектурні проєкти, дизайн інтер'єру",
+                bullet_2: "Реалізація під ключ – замовляємо матеріали, меблі та втілюємо",
+                bullet_3: "Реконструкція під ключ – розширюємо квартиру на цілу кімнату, стилізуємо",
+                bullet_4: "Бюджетна реконструкція – підберемо реконструкцію у вашій ціновій категорії",
+                bullet_5: "Консультуємо щодо стилізації",
+                bullet_6: "Допомагаємо підвищити вартість нерухомості",
+                pricing_heading: "Ціни",
+                th_package: "Пакет", th_desc: "Опис", th_price: "Ціна",
+                p1_name: "Кімната", p1_desc: "2D план, 3D план, реалістичний рендер у вибраному стилі<br>список матеріалів, список меблів,<br>можливості реалізації – послуги<br>онлайн-консультація", p1_price: "1 970 крон",
+                p2_name: "Квартира чи будинок", p2_desc: "2D план, 3D план, реалістичний рендер у вибраному стилі<br>список матеріалів, список меблів<br>реалізація – послуги<br>особиста чи онлайн-консультація або замір", p2_price: "від 2 490 крон",
+                p3_name: "Реалізація під ключ", p3_desc: "Організуємо 2D плани, 3D плани, рендери, купівлю всього необхідного, монтаж<br>особиста чи онлайн-консультація", p3_price: "6 900 крон",
+                p4_name: "Реконструкція під ключ", p4_desc: "Організуємо 2D плани, 3D плани, рендери, будівельні плани, купівлю всього та послуги<br>особиста чи онлайн-консультація", p4_price: "11 990 крон",
+                p5_name: "Реконструкція V / Реалізація V", p5_desc: "План + реалізація - налаштуємо послуги під ваш бюджет!", p5_price: "індивідуально",
+                footer_text: "Ми проектуємо приватні резиденції та комерційні приміщення з чистого аркуша.<br>Ніяких шаблонів. Ніколи не повторюємо планування. Ніяких компромісів."
+            },
+            pl: {
+                nav_home: "Strona główna", nav_services: "Usługi i cennik", nav_projects: "Projekty", nav_contact: "Kontakt",
+                main_title: "Plynth Studio",
+                main_subtitle: "Zaprojektujemy Twoją przestrzeń pod kątem architektonicznym i designu oraz zrealizujemy projekt",
+                bullet_1: "Rysunki techniczne, projekty architektoniczne, projektowanie wnętrz",
+                bullet_2: "Realizacja pod klucz – zamawiamy materiały, meble i realizujemy",
+                bullet_3: "Przebudowa pod klucz – powiększamy mieszkanie o cały pokój, stylizujemy",
+                bullet_4: "Budżetowa przebudowa – dobieramy remont w Twojej kategorii cenowej",
+                bullet_5: "Doradzamy w zakresie stylizacji",
+                bullet_6: "Pomagamy zwiększyć wartość nieruchomości",
+                pricing_heading: "Cennik",
+                th_package: "Pakiet", th_desc: "Opis", th_price: "Cena",
+                p1_name: "Pokój", p1_desc: "Plan 2D, plan 3D, realistyczny render w wybranym stylu<br>lista materiałów, lista mebli,<br>możliwości realizacji – usługi<br>konsultacja online", p1_price: "1 970 CZK",
+                p2_name: "Mieszkanie lub dom", p2_desc: "Plan 2D, plan 3D, realistyczny render w wybranym stylu<br>lista materiałów, lista mebli<br>realizacja – usługi<br>konsultacja osobista lub online", p2_price: "od 2 490 CZK",
+                p3_name: "Realizacja pod klucz", p3_desc: "Zapewniamy plany 2D, 3D, rendery, zakup wszystkich materiałów, montaż<br>konsultacja osobista lub online", p3_price: "6 900 CZK",
+                p4_name: "Przebudowa pod klucz", p4_desc: "Zapewniamy plany 2D, 3D, rendery, plany budowlane, zakup materiałów i pełne usługi<br>konsultacja osobista lub online", p4_price: "11 990 CZK",
+                p5_name: "Przebudowa V / Realizacja V", p5_desc: "Plan + realizacja - dostosujemy usługi do Twojego budżetu!", p5_price: "indywidualnie",
+                footer_text: "Projektujemy prywatne rezydencje i przestrzenie komercyjne od zera.<br>Żadnych szablonów. Żadnych powtarzalnych planów. Żadnych dróg na skróty."
+            },
+            fr: {
+                nav_home: "Accueil", nav_services: "Services et tarifs", nav_projects: "Projets", nav_contact: "Contact",
+                main_title: "Plynth Studio",
+                main_subtitle: "Nous concevons votre espace sur le plan architectural et esthétique et réalisons le projet",
+                bullet_1: "Dessins techniques, projets architecturaux, design d'intérieur",
+                bullet_2: "Réalisation clé en main – commande des surfaces, des meubles et réalisation",
+                bullet_3: "Rénovation clé en main – agrandissement d'une pièce, stylisation",
+                bullet_4: "Rénovation économique – choix d'une rénovation dans votre budget",
+                bullet_5: "Conseils en stylisme",
+                bullet_6: "Valorisation de votre bien immobilier",
+                pricing_heading: "Tarifs",
+                th_package: "Forfait", th_desc: "Description", th_price: "Prix",
+                p1_name: "Pièce", p1_desc: "Plan 2D, plan 3D, rendu réaliste dans le style choisi<br>liste de matériaux, liste de meubles,<br>options de réalisation – services<br>consultation en ligne", p1_price: "1 970 CZK",
+                p2_name: "Appartement ou Maison", p2_desc: "Plan 2D, plan 3D, rendu réaliste<br>liste de matériaux, liste de meubles<br>réalisation – services<br>consultation personnelle ou en ligne", p2_price: "dès 2 490 CZK",
+                p3_name: "Réalisation Clé en Main", p3_desc: "Plans 2D, 3D, rendus, achat de tous les éléments, installation incluant services<br>consultation personnelle ou en ligne", p3_price: "6 900 CZK",
+                p4_name: "Rénovation Clé en Main", p4_desc: "Plans 2D, 3D, rendus, plans de construction, achat de tous les éléments et services<br>consultation personnelle ou en ligne", p4_price: "11 990 CZK",
+                p5_name: "Rénovation V / Réalisation V", p5_desc: "Plan + réalisation - nous adaptons les services à votre budget !", p5_price: "sur devis",
+                footer_text: "Nous concevons des résidences privées et des espaces commerciaux à partir d'une page blanche.<br>Pas de modèles. Pas de plans répétitifs. Pas de raccourcis."
+            },
+            es: {
+                nav_home: "Inicio", nav_services: "Servicios y precios", nav_projects: "Proyectos", nav_contact: "Contacto",
+                main_title: "Plynth Studio",
+                main_subtitle: "Diseñaremos tu espacio a nivel arquitectónico y de diseño y ejecutaremos el proyecto",
+                bullet_1: "Planos técnicos, diseños arquitectónicos, diseño de interiores",
+                bullet_2: "Ejecución llave en mano – pedimos superficies, muebles y ejecutamos",
+                bullet_3: "Reconstrucción llave en mano – ampliamos el apartamento una habitación entera, estilizamos",
+                bullet_4: "Reconstrucción económica – seleccionamos la reconstrucción en tu categoría de precio",
+                bullet_5: "Asesoramiento de estilismo",
+                bullet_6: "Ayudamos a aumentar el valor del inmueble",
+                pricing_heading: "Precios",
+                th_package: "Paquete", th_desc: "Descripción", th_price: "Precio",
+                p1_name: "Habitación", p1_desc: "Plano 2D, plano 3D, render realista en estilo seleccionado<br>lista de materiales, lista de muebles,<br>opciones de realización – servicios<br>consulta online", p1_price: "1,970 CZK",
+                p2_name: "Apartamento o Casa", p2_desc: "Plano 2D, plano 3D, render realista<br>lista de materiales, lista de muebles<br>realización – servicios<br>consulta personal u online", p2_price: "desde 2,490 CZK",
+                p3_name: "Realización Llave en Mano", p3_desc: "Planes 2D, 3D, renders, compra de todas las propiedades, instalación incluidos servicios<br>consulta personal u online", p3_price: "6,900 CZK",
+                p4_name: "Reconstrucción Llave en Mano", p4_desc: "Planes 2D, 3D, renders, planos de construcción, compra de propiedades y todos los servicios<br>consulta personal u online", p4_price: "11,990 CZK",
+                p5_name: "Reconstrucción V / Realización V", p5_desc: "¡Plan + realización - adaptamos los services a tu presupuesto!", p5_price: "individual",
+                footer_text: "Diseñamos residencias privadas y espacios comerciales desde cero.<br>Sin plantillas. Sin planos repetidos. Sin atajos."
+            }
+        };
+
+        function changeLang(lang, flagEmoji, event) {
+            if(event) event.preventDefault(); 
+            document.getElementById('active-flag').innerText = flagEmoji;
+            const dict = translations[lang];
+            
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if(dict[key]) {
+                    element.innerHTML = dict[key]; 
+                }
+            });
+        }
+    </script>
+</body>
+</html>
