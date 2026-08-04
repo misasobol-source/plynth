@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt - Studio Plynth</title>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* --- MOCKUP PRESENTATION BACKGROUND --- */
+        html, body {
+            background-image: url('https://plus.unsplash.com/premium_photo-1671410372744-989627ea0033?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG1hcmJsZSUyMHdhbGxwYXBlcnxlbnwwfHwwfHx8MA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #e0e5e9; 
+            
+            color: #1a1a1a;
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+            
+            display: flex;
+            justify-content: center;
+            padding: 3rem 2rem; 
+        }
+
+        /* Wrapper acting as the Website Rectangle */
+        .page-wrapper {
+            background-color: #f8f7f4; 
+            width: 100%;
+            max-width: 1200px;
+            border-radius: 24px; 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); 
+            overflow: hidden; 
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Header & Navigation */
+        .top-section {
+            width: 100%;
+            padding: 3rem 2rem 0 2rem; 
+            margin: 0 auto;
+            position: relative;
+            z-index: 20; 
+        }
+
+        /* Perfectly centered header layout */
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5rem;
+            width: 100%;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem; /* Větší mezera mezi logem a menu */
+            flex: 1;
+        }
+
+        .header-center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+            font-size: 1.2rem;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        /* Language Switcher Styles */
+        .lang-switcher {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-btn {
+            background: #fff;
+            border: 1px solid #d1d1d1;
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #1a1a1a;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover { background: #f0f0f0; }
+
+        .lang-dropdown {
+            display: none; 
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background: #fff;
+            border: 1px solid #d1d1d1;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            min-width: 140px;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .lang-switcher:hover .lang-dropdown { display: block; }
+
+        .lang-dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.2rem;
+            text-decoration: none;
+            color: #1a1a1a;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .lang-dropdown a:hover { background: #f5f5f5; }
+
+        .logo {
+            font-family: serif;
+            font-size: 2.2rem;
+            font-weight: bold;
+            letter-spacing: -1px;
+            text-decoration: none;
+            color: #1a1a1a;
+        }
+
+        .nav-pill {
+            display: flex;
+            gap: 1.5rem;
+            border: 1px solid #d1d1d1;
+            border-radius: 50px;
+            padding: 0.8rem 2.5rem;
+            background: #f8f7f4;
+        }
+
+        .nav-pill a {
+            text-decoration: none;
+            color: #444;
+            font-size: 0.95rem;
+        }
+
+        .nav-pill a.active, .nav-pill a:hover {
+            color: #000;
+            font-weight: 500;
+        }
+
+        .social-icons a {
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+
+        /* --- CONTACT PAGE SPECIFIC STYLES --- */
+        .contact-wrapper {
+            padding: 0 4rem 6rem 4rem;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .contact-header h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .contact-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        /* Contact Details (Left side) */
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .detail-icon {
+            font-size: 1.8rem;
+            color: #1a1a1a;
+            background: #fff;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            border: 1px solid #eaeaea;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            flex-shrink: 0;
+        }
+
+        .detail-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .detail-text p, .detail-text a {
+            font-size: 1.1rem;
+            color: #555;
+            text-decoration: none;
+            line-height: 1.5;
+        }
+
+        .detail-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Form (Right side) */
+        .contact-form-container {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.04);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-control {
+            padding: 1rem 1.2rem;
+            border: 1px solid #d1d1d1;
+            border-radius: 12px;
+            font-size: 1rem;
+            background-color: #fcfcfc;
+            transition: border-color 0.2s, background-color 0.2s;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: #1a1a1a;
+            background-color: #fff;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            background-color: #1f1e1c;
+            color: #fff;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .btn-submit:hover {
+            background-color: #333;
+        }
+
+        /* Footer CTA */
+        .footer-cta {
+            text-align: center;
+            padding: 3rem 2rem 5rem 2rem;
+            width: 100%;
+            background-color: #f8f7f4;
+            border-top: 1px solid #eaeaea;
+            margin-top: auto;
+        }
+
+        .footer-cta p {
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            line-height: 1.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            html, body { padding: 1rem 0.5rem; }
+            .page-wrapper { border-radius: 16px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); }
+            
+            .header { 
+                flex-direction: column; 
+                align-items: stretch; 
+                margin-bottom: 2rem; 
+            }
+            .header-left { width: 100%; justify-content: space-between; margin-bottom: 1rem; gap: 1rem; }
+            .header-center { display: none; } /* Hide nav on mobile for now */
+            .social-icons { justify-content: center; margin-top: 1rem; }
+            
+            .contact-wrapper { padding: 0 1.5rem 4rem 1.5rem; }
+            .contact-header h1 { font-size: 3rem; }
+            .contact-form-container { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <!-- Header & Navigation -->
+    <div class="top-section">
+        <header class="header">
+            
+            <!-- Logo & Language Switcher -->
+            <div class="header-left">
+                <div class="lang-switcher">
+                    <button class="lang-btn"><span id="active-flag">🇨🇿</span> <i class="fas fa-chevron-down"></i></button>
+                    <div class="lang-dropdown">
+                        <a href="#" onclick="changeLang('cs', '🇨🇿', event)">🇨🇿 CZ</a>
+                        <a href="#" onclick="changeLang('en', '🇬🇧', event)">🇬🇧 EN</a>
+                        <a href="#" onclick="changeLang('uk', '🇺🇦', event)">🇺🇦 UKR</a>
+                        <a href="#" onclick="changeLang('pl', '🇵🇱', event)">🇵🇱 PL</a>
+                        <a href="#" onclick="changeLang('fr', '🇫🇷', event)">🇫🇷 FR</a>
+                        <a href="#" onclick="changeLang('es', '🇪🇸', event)">🇪🇸 ES</a>
+                    </div>
+                </div>
+                <a href="index.html" class="logo">Plynth</a>
+            </div>
+
+            <!-- Main Nav -->
+            <div class="header-center">
+                <nav class="nav-pill">
+                    <a href="index.html" data-i18n="nav_home">Domů</a>
+                    <a href="services.html" data-i18n="nav_services">Služby</a>
+                    <a href="index.html" data-i18n="nav_projects">Projekty</a>
+                    <a href="contact.html" class="active" data-i18n="nav_contact">Kontakt</a>
+                </nav>
+            </div>
+
+            <!-- Socials -->
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </header>
+    </div>
+
+    <!-- Contact Section -->
+    <main class="contact-wrapper">
+        <div class="contact-header">
+            <h1 data-i18n="contact_title">Spojte se s námi</h1>
+            <p data-i18n="contact_sub">Ať už máte konkrétní představu nebo teprve hledáte inspiraci, rádi se s vámi setkáme nad šálkem dobré kávy.</p>
+        </div>
+
+        <div class="contact-content">
+            
+            <!-- Contact Info -->
+            <div class="contact-details">
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="detail-text">
+                        <h3 data-i18n="contact_lbl_phone">Telefon</h3>
+                        <a href="tel:+420775117558">+420 775 117 558</a>
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="detail-text">
+                        <h3 data-i18n="contact_lbl_email">E-mail</h3>
+                        <a href="mailto:studioklinth@outlook.com">studioklinth@outlook.com</a>
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="detail-text">
+                        <h3 data-i18n="contact_lbl_address">Studio</h3>
+                        <p>Doplnit adresu<br>110 00 Praha 1<br>Česká republika</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form (Powered by FormSubmit) -->
+            <div class="contact-form-container">
+                <!-- Action URL updated to the official email -->
+                <form class="contact-form" action="https://formsubmit.co/studioklinth@outlook.com" method="POST">
+                    
+                    <!-- FormSubmit Configuration -->
+                    <input type="hidden" name="_subject" value="Nová zpráva z webu Plynth!">
+                    <input type="hidden" name="_captcha" value="false">
+                    
+                    <!-- Skrytá kopie na soukromý email -->
+                    <input type="hidden" name="_cc" value="sobolikovamichaela@gmail.com">
+
+                    <div class="form-group">
+                        <label for="name" data-i18n="form_name">Jméno a příjmení</label>
+                        <input type="text" id="name" name="name" class="form-control" required placeholder="Jan Novák">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" data-i18n="form_email">E-mailová adresa</label>
+                        <input type="email" id="email" name="email" class="form-control" required placeholder="jan@novak.cz">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" data-i18n="form_phone">Telefon (volitelné)</label>
+                        <input type="tel" id="phone" name="phone" class="form-control" placeholder="+420 123 456 789">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" data-i18n="form_message">Vaše zpráva</label>
+                        <textarea id="message" name="message" class="form-control" required placeholder="Rád bych s vámi probral návrh interiéru..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit" data-i18n="form_submit">Odeslat zprávu</button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-cta">
+        <p data-i18n="footer_text">Dopřejte si více než mileniální šeď!</p>
+    </footer>
+
+</div> <!-- End of page-wrapper -->
+
+    <!-- Scripts -->
+    <script>
+        /* ----------------------------------------------------
+           LANGUAGE TRANSLATION DICTIONARY
+        ---------------------------------------------------- */
+        const translations = {
+            cs: {
+                nav_home: "Domů", nav_services: "Služby", nav_projects: "Projekty", nav_contact: "Kontakt",
+                contact_title: "Spojte se s námi",
+                contact_sub: "Ať už máte konkrétní představu nebo teprve hledáte inspiraci, rádi se s vámi setkáme nad šálkem dobré kávy.",
+                contact_lbl_phone: "Telefon",
+                contact_lbl_email: "E-mail",
+                contact_lbl_address: "Studio",
+                form_name: "Jméno a příjmení",
+                form_email: "E-mailová adresa",
+                form_phone: "Telefon (volitelné)",
+                form_message: "Vaše zpráva",
+                form_submit: "Odeslat zprávu",
+                footer_text: "Dopřejte si více než mileniální šeď!"
+            },
+            en: {
+                nav_home: "Home", nav_services: "Services", nav_projects: "Projects", nav_contact: "Contact",
+                contact_title: "Get in touch",
+                contact_sub: "Whether you have a specific vision or are just looking for inspiration, we'd love to meet you over a cup of coffee.",
+                contact_lbl_phone: "Phone",
+                contact_lbl_email: "Email",
+                contact_lbl_address: "Studio",
+                form_name: "Full Name",
+                form_email: "Email Address",
+                form_phone: "Phone (optional)",
+                form_message: "Your Message",
+                form_submit: "Send Message",
+                footer_text: "Treat yourself to more than millennial grey!"
+            },
+            uk: {
+                nav_home: "Головна", nav_services: "Послуги", nav_projects: "Проєкти", nav_contact: "Контакти",
+                contact_title: "Зв'яжіться з нами",
+                contact_sub: "Чи є у вас конкретне бачення, чи ви тільки шукаєте натхнення, ми будемо раді зустрітися за чашкою кави.",
+                contact_lbl_phone: "Телефон",
+                contact_lbl_email: "Електронна пошта",
+                contact_lbl_address: "Студія",
+                form_name: "Ім'я та прізвище",
+                form_email: "Електронна пошта",
+                form_phone: "Телефон (необов'язково)",
+                form_message: "Ваше повідомлення",
+                form_submit: "Надіслати повідомлення",
+                footer_text: "Дозвольте собі більше, ніж міленіальний сірий!"
+            },
+            pl: {
+                nav_home: "Strona główna", nav_services: "Usługi", nav_projects: "Projekty", nav_contact: "Kontakt",
+                contact_title: "Skontaktuj się z nami",
+                contact_sub: "Niezależnie od tego, czy masz konkretną wizję, czy dopiero szukasz inspiracji, chętnie spotkamy się przy filiżance dobrej kawy.",
+                contact_lbl_phone: "Telefon",
+                contact_lbl_email: "E-mail",
+                contact_lbl_address: "Studio",
+                form_name: "Imię i nazwisko",
+                form_email: "Adres e-mail",
+                form_phone: "Telefon (opcjonalnie)",
+                form_message: "Twoja wiadomość",
+                form_submit: "Wyślij wiadomość",
+                footer_text: "Zafunduj sobie więcej niż milenialna szarość!"
+            },
+            fr: {
+                nav_home: "Accueil", nav_services: "Services", nav_projects: "Projets", nav_contact: "Contact",
+                contact_title: "Contactez-nous",
+                contact_sub: "Que vous ayez une vision précise ou que vous cherchiez l'inspiration, nous serions ravis d'échanger autour d'un café.",
+                contact_lbl_phone: "Téléphone",
+                contact_lbl_email: "E-mail",
+                contact_lbl_address: "Studio",
+                form_name: "Nom et prénom",
+                form_email: "Adresse e-mail",
+                form_phone: "Téléphone (facultatif)",
+                form_message: "Votre message",
+                form_submit: "Envoyer le message",
+                footer_text: "Offrez-vous plus que du gris millénaire !"
+            },
+            es: {
+                nav_home: "Inicio", nav_services: "Servicios", nav_projects: "Proyectos", nav_contact: "Contacto",
+                contact_title: "Ponte en contacto",
+                contact_sub: "Ya sea que tengas una visión específica o busques inspiración, nos encantaría conocerte tomando un café.",
+                contact_lbl_phone: "Teléfono",
+                contact_lbl_email: "Correo electrónico",
+                contact_lbl_address: "Estudio",
+                form_name: "Nombre completo",
+                form_email: "Correo electrónico",
+                form_phone: "Teléfono (opcional)",
+                form_message: "Tu mensaje",
+                form_submit: "Enviar mensaje",
+                footer_text: "¡Date el gusto de tener algo más que gris millennial!"
+            }
+        };
+
+        // Function triggered when language is clicked
+        function changeLang(lang, flagEmoji, event) {
+            if(event) event.preventDefault(); 
+            
+            document.getElementById('active-flag').innerText = flagEmoji;
+            const dict = translations[lang];
+            
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if(dict[key]) {
+                    element.innerHTML = dict[key]; 
+                }
+            });
+        }
+    </script>
+</body>
+</html>
